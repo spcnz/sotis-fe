@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { ConnectedRouter } from 'connected-react-router';
 import { Provider } from 'react-redux';
-import createHistory from 'history/createBrowserHistory'
+import { createBrowserHistory } from "history";
 import Routes from './components/Routes';
 import store from './store';
 
-const history = createHistory();
+const history = createBrowserHistory();
 
 class App extends Component {
   render() {
