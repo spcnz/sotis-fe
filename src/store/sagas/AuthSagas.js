@@ -3,14 +3,14 @@ import { push} from 'connected-react-router';
 
 import { authUser, loginError, registerError } from '../actions/AuthActions';
 import AuthService from '../../services/AuthService';
-import { DASHBOARD, LOGIN } from '../../routes';
+import { HOME, LOGIN } from '../../routes';
 
 export function* userLogin({ payload }) {
   try {
     yield call(AuthService.login, payload);
 
     yield put(authUser(true));
-    yield put(push(DASHBOARD));
+    yield put(push(HOME));
   } catch (error) {
     yield put(loginError(true));
   }

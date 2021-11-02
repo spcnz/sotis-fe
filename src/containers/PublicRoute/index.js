@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import { useSelector } from "react-redux";
-import { DASHBOARD } from '../../routes';
+import { HOME } from '../../routes';
 
 export function PublicRoute({
   component: Component,
@@ -12,7 +12,7 @@ export function PublicRoute({
 
     return (
         <Route {...rest} 
-            render={props => isAuthenticated  && restricted ? <Redirect to={DASHBOARD} /> : <Component {...props} />  }
+            render={props => isAuthenticated  && restricted ? <Redirect to={HOME} /> : <Component {...props} />  }
         />
     );
 }
