@@ -1,4 +1,4 @@
-import { useEffect  } from 'react';
+import { useEffect } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { useSelector } from "react-redux";
@@ -6,21 +6,19 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Table from 'react-bootstrap/Table';
 import { useDispatch } from 'react-redux';
-import { getParts, createPart } from '../../store/actions/PartActions';
+import { getSections, createSection } from '../../store/actions/SectionActions';
+import { getParts } from '../../store/actions/PartActions';
 import { TableBody } from '../../styles';
 
-const LINEAR = 'LINEAR';
-const NON_LINEAR = 'NON_LINEAR';
-const INDIVIDUAL = 'INDIVIDUAL';
-const SIMULTANEOUS = 'SIMULTANEOUS';
 
-const PartInfo = props => {
+const SectionInfo = props => {
     const dispatch = useDispatch();
     const testId = useSelector(state => state.test.current);
     const parts = useSelector(state => state.part.all);
+    const sections = useSelector(state => state.section.all);
 
     const onChange = (field, value) => {
-        props.setPartInfo(prevState => {
+        props.setSectionInfo(prevState => {
             let newState = {...prevState};
             newState[field] = value;
             return newState;
@@ -28,20 +26,40 @@ const PartInfo = props => {
     }
 
     useEffect(() => {
-        dispatch(getParts(testId))
+        if (testId) {
+            dispatch(getParts(testId));
+        }
     }, [testId, dispatch])
+
+    useEffect(() => {
+        if (props.sectionInfo.partId)
+            dispatch(getSections(props.sectionInfo.partId))
+    }, [props.sectionInfo.partId, dispatch])
 
     const submit = e => {
         e.preventDefault();
-        dispatch(createPart({ partInfo: props.partInfo, testId }))
+        dispatch(createSection(props.sectionInfo))
     }
 
     return (
         <Form onSubmit={submit}>
             <Row className="mb-3">
+                <Col xs={6} md={4}>
+                    <Form.Label>Choose part</Form.Label>
+                    <Form.Select aria-label="Part" onChange={e => onChange('partId', e.target.value)}>
+                        <option value={''} selected></option>
+                        {parts.map(part => (
+                            <option value={part.id}>{part.title}</option>
+                        ))}
+                    </Form.Select>
+                </Col>
+            </Row>
+            {props.sectionInfo.partId &&
+            <div>
+            <Row className="mb-3">
                 <Col xs={12} md={12}>
                     <Form.Group className="mb-3">
-                        <Form.Label>Part title</Form.Label>
+                        <Form.Label>Section title</Form.Label>
                         <Form.Control 
                             onChange={e => onChange('title', e.target.value)} 
                             type="text" 
@@ -49,23 +67,7 @@ const PartInfo = props => {
                     </Form.Group>
                 </Col>
             </Row>
-            <Row className="mb-3">
-                <Col xs={6} md={4}>
-                    <Form.Label>Navigation mode</Form.Label>
-                    <Form.Select aria-label="Navigation mode" onChange={e => onChange('navigation_mode',e.target.value)}>
-                        <option value={LINEAR}>Linear</option>
-                        <option value={NON_LINEAR}>Non linear</option>
-                    </Form.Select>
-                </Col>
-                <Col xs={6} md={4}>
-                    <Form.Label>Submission mode</Form.Label>
-                    <Form.Select aria-label="Submission mode" onChange={e => onChange('submission_mode', e.target.value)}>
-                        <option value={SIMULTANEOUS}>Simultaneous</option>
-                        <option value={INDIVIDUAL}>Individual</option>
-                    </Form.Select>
-                </Col>
-            </Row>
-            <Button type="submit">Create part</Button>
+            <Button type="submit">Create section</Button>
             <Row>
                 <Col xs={12} md={12} sm >
                 <Table style={{marginTop: '15px', overflow: 'auto'}} striped bordered hover responsive>
@@ -76,18 +78,19 @@ const PartInfo = props => {
                         </tr>
                     </thead>
                     <TableBody>
-                        {parts.map(part => (
+                        {sections.map(section => (
                             <tr>
-                                <td>{part.id}</td>
-                                <td>{part.title}</td>
+                                <td>{section.id}</td>
+                                <td>{section.title}</td>
                             </tr>
                         ))}
                     </TableBody>
                     </Table>
                 </Col>
             </Row>
+            </div>}
       </Form>
     )
 }
 
-export default PartInfo;
+export default SectionInfo;

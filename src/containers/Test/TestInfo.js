@@ -54,9 +54,9 @@ const TestInfo = props => {
                             <InputGroup.Text>min</InputGroup.Text>
                             <Form.Control 
                                 required 
-                                onChange={e => onChange('time_dependency', e.target.value)} 
+                                onChange={e => onChange('time_limit_seconds', e.target.value)} 
                                 type="number" 
-                                value={props.testInfo.time_dependency}   />
+                                value={props.testInfo.time_limit_seconds}   />
                         </InputGroup>
                     </Col>}
              </Row>

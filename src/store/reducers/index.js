@@ -5,6 +5,9 @@ import authReducer from './AuthReducer';
 import testReducer from './TestReducer';
 import errorReducer from './ErrorReducer';
 import partReducer from './PartReducer';
+import sectionReducer from './SectionReducer';
+import itemReducer from './ItemReducer';
+import optionReducer from './OptionReducer';
 
 const hist = history =>
   combineReducers({
@@ -12,6 +15,9 @@ const hist = history =>
     test: testReducer,
     error: errorReducer,
     part: partReducer,
+    section: sectionReducer,
+    item: itemReducer,
+    option: optionReducer,
     router: connectRouter(history)
 });
 

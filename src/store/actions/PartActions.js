@@ -8,7 +8,6 @@ export const getParts = payload => {
 };
 
 export const setParts = payload => {
-  console.log('iz akcije')
     return {
       type: SET_PARTS,
       payload: payload
@@ -16,7 +15,6 @@ export const setParts = payload => {
 };
 
 export const createPart = payload => {
-  console.log('iz akcije')
     return {
       type: CREATE_PART,
       payload: payload
@@ -24,7 +22,6 @@ export const createPart = payload => {
 };
 
 export const createdPart = payload => {
-  console.log('iz akcije')
     return {
       type: CREATED_PART,
       payload: payload
