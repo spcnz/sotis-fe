@@ -97,7 +97,7 @@ const ItemInfo = props => {
                 </Col>
             </Row>
             <Row className="mb-3">
-                <Col xs={6} md={4}>
+                <Col xs={4} md={4}>
                     <InputGroup className="mb-3">
                         <InputGroup.Text>Score </InputGroup.Text>
                         <Form.Control 
@@ -107,7 +107,7 @@ const ItemInfo = props => {
                             value={props.itemInfo.score}   />
                     </InputGroup>
                 </Col>
-                <Col xs={6} md={4}>
+                <Col xs={4} md={4}>
                     <InputGroup className="mb-3">
                         <InputGroup.Text>Max choices</InputGroup.Text>
                         <Form.Control 
@@ -117,6 +117,12 @@ const ItemInfo = props => {
                             value={props.itemInfo.maxChoices}   />
                     </InputGroup>
                 </Col>
+                <Col xs={4} md={4}>
+                    <Form.Group controlId="formFile" className="mb-3">
+                        <Form.Control type="file" />
+                    </Form.Group>
+                </Col>
+                
             </Row>
             <Button type="submit">Create item</Button>
             <Row>

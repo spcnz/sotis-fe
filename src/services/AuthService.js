@@ -66,7 +66,7 @@ class AuthService extends ApiService {
 
   isAuthenticated = () => {
     const user = JSON.parse(localStorage.getItem('user'));
-    return true;
+    // return true;
     return user && user.access_token;
   };
 
