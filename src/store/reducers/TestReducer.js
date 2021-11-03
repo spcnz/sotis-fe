@@ -10,6 +10,7 @@ const partReducer = (state = initialState, action) => {
     case SET_TESTS:
       return {...state, all : action.payload }
     case SET_CURRENT_TEST:
+      console.log("pozove se set current u reducereu za test")
       return {...state, current: action.payload}
     default:
       return state;

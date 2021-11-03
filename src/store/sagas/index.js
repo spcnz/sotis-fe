@@ -1,7 +1,7 @@
 import { all, takeLatest } from 'redux-saga/effects';
-import { CREATE_TEST, GET_PARTS, LOGIN, REGISTER } from '../actions/ActionTypes';
+import { CREATE_PART, CREATE_TEST, GET_PARTS, LOGIN, REGISTER } from '../actions/ActionTypes';
 import { userLogin, userRegister } from './AuthSagas';
-import { getParts } from './PartSagas';
+import { getParts, partCreate } from './PartSagas';
 import { testCreate } from './TestSagas';
 
 export default function* rootSaga() {
@@ -9,6 +9,7 @@ export default function* rootSaga() {
     takeLatest(LOGIN, userLogin),
     takeLatest(REGISTER, userRegister),
     takeLatest(CREATE_TEST, testCreate),
-    takeLatest(GET_PARTS, getParts)
+    takeLatest(GET_PARTS, getParts),
+    takeLatest(CREATE_PART, partCreate)
   ]);
 }

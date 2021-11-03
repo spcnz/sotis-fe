@@ -21,7 +21,8 @@ const TestInfo = props => {
 
     const submit = e => {
         e.preventDefault();
-        dispatch(createTest(props.testInfo))
+        dispatch(createTest(props.testInfo));
+        props.setDisabledNextBtn(false);
     }
 
     return (

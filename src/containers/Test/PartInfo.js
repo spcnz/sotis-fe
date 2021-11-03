@@ -1,13 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useEffect  } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { useSelector } from "react-redux";
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Table from 'react-bootstrap/Table'
 import { useDispatch } from 'react-redux';
-import { createTest } from '../../store/actions/TestActions';
-import { getParts } from '../../store/actions/PartActions';
+import { getParts, createPart } from '../../store/actions/PartActions';
+import { TableHead, TableBody, TableRow, Table } from '../../styles';
 
 const LINEAR = 'LINEAR';
 const NON_LINEAR = 'NON_LINEAR';
@@ -17,9 +16,8 @@ const SIMULTANEOUS = 'SIMULTANEOUS';
 const PartInfo = props => {
     const dispatch = useDispatch();
     const testId = useSelector(state => state.test.current);
-    console.log('u testu', testId)
     const parts = useSelector(state => state.part.all);
-    console.log('parts', parts)
+
     const onChange = (field, value) => {
         props.setPartInfo(prevState => {
             let newState = {...prevState};
@@ -30,11 +28,11 @@ const PartInfo = props => {
 
     useEffect(() => {
         dispatch(getParts(testId))
-    }, [])
+    }, [testId])
 
     const submit = e => {
         e.preventDefault();
-        dispatch(createTest(props.partInfo))
+        dispatch(createPart({ partInfo: props.partInfo, testId }))
     }
 
     return (
@@ -46,44 +44,44 @@ const PartInfo = props => {
                         <Form.Control 
                             onChange={e => onChange('title', e.target.value)} 
                             type="text" 
-                            placeholder={props.partInfo.title} />
+                            placeholder="" />
                     </Form.Group>
                 </Col>
             </Row>
             <Row className="mb-3">
                 <Col xs={6} md={4}>
                     <Form.Label>Navigation mode</Form.Label>
-                    <Form.Select aria-label="Navigation mode">
+                    <Form.Select aria-label="Navigation mode" onChange={e => onChange('navigation_mode',e.target.value)}>
                         <option value={LINEAR}>Linear</option>
                         <option value={NON_LINEAR}>Non linear</option>
                     </Form.Select>
                 </Col>
                 <Col xs={6} md={4}>
                     <Form.Label>Submission mode</Form.Label>
-                    <Form.Select aria-label="Submission mode">
-                        <option value={INDIVIDUAL}>Individual</option>
+                    <Form.Select aria-label="Submission mode" onChange={e => onChange('submission_mode', e.target.value)}>
                         <option value={SIMULTANEOUS}>Simultaneous</option>
+                        <option value={INDIVIDUAL}>Individual</option>
                     </Form.Select>
                 </Col>
             </Row>
             <Button type="submit">Create part</Button>
-            <Row className="mb-3">
+            <Row>
                 <Col xs={12} md={12}>
-                <Table striped bordered hover style={{marginTop: '15px'}}>
-                    <thead>
-                        <tr>
+                <Table striped bordered hover style={{marginTop: '15px', tableLayout: 'fixed'}} >
+                    <TableHead>
+                        <TableRow>
                             <th>#</th>
                             <th>Title</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
                         {parts.map(part => (
-                            <tr>
+                            <TableRow>
                                 <td>{part.id}</td>
                                 <td>{part.title}</td>
-                            </tr>
+                            </TableRow>
                         ))}
-                    </tbody>
+                    </TableBody>
                     </Table>
                 </Col>
             </Row>

@@ -7,9 +7,10 @@ const ENDPOINTS = {
 class TestService extends ApiService {
 
   create = async testData => {
-    // const { data } = await this.apiClient.post(ENDPOINTS.CREATE, testData);
-    return { id: 1}
-    // return data;
+    testData['subject_id'] = 1;
+    const { data } = await this.apiClient.post(ENDPOINTS.CREATE, testData);
+
+    return data;
   };
 
 }

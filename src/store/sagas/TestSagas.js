@@ -5,7 +5,6 @@ import TestService from '../../services/TestService';
 export function* testCreate({ payload }) {
   try {
     const data = yield call(TestService.create, payload);
-    console.log('ovdee', data)
     yield put(setCurrentTest(data.id));
   } catch (error) {
     yield put(createTestError(true));

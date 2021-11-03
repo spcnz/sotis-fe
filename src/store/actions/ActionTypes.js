@@ -17,6 +17,8 @@ export const GET_TESTS = 'GET_TESTS';
 export const SET_TESTS = 'SET_TESTS';
 
 export const CREATE_PART = 'CREATE_PART';
+export const CREATED_PART = 'CREATED_PART';
+
 export const EDIT_PART = 'EDIT_PART';
 
 export const GET_PARTS = 'GET_PARTS';
