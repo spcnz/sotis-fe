@@ -13,6 +13,7 @@ export const SET_CURRENT_TEST = 'SET_CURRENT_TEST';
 export const EDIT_TEST = 'EDIT_TEST';
 export const GET_TESTS = 'GET_TESTS';
 export const SET_TESTS = 'SET_TESTS';
+export const GET_TEST = 'GET_TEST';
 
 
 //=== PART ===

@@ -1,4 +1,4 @@
-import { CREATE_TEST, CREATE_TEST_ERROR, GET_TESTS, SET_CURRENT_TEST, SET_TESTS } from './ActionTypes';
+import { CREATE_TEST, CREATE_TEST_ERROR, GET_TESTS, SET_CURRENT_TEST, SET_TESTS, GET_TEST } from './ActionTypes';
 
 export const createTest = testData => {
   return {
@@ -31,6 +31,13 @@ export const getAllTest = payload => {
 export const setTests = payload => {
   return {
     type: SET_TESTS,
+    payload
+  }
+}
+
+export const getTest = payload => {
+  return {
+    type: GET_TEST,
     payload
   }
 }

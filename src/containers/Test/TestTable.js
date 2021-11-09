@@ -1,22 +1,29 @@
 import { useEffect } from "react";
-import { useDispatch, useSelector} from "react-redux";
-import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams, useHistory } from "react-router-dom";
 
 import Table from 'react-bootstrap/Table';
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 
-import { getAllTest } from '../../store/actions/TestActions';
+import { getAllTest, setCurrentTest } from '../../store/actions/TestActions';
+import { TEST } from '../../routes';
 
 const TestTable = () => {
     const dispatch = useDispatch();
     const { id } = useParams()
     const tests = useSelector(state => state.test.all)
+    const history = useHistory();
 
     useEffect(() => {
         dispatch(getAllTest(id))
     },[])
 
+    const routeChange = test =>{ 
+        let path = TEST.replace(":id", test.id);
+        path = path.replace("courseId", id);
+        history.push(path);
+      }
 
     return (
         <Container style={{margin: '40px', width: '50%'}}>
@@ -30,10 +37,10 @@ const TestTable = () => {
                 </thead>
             <tbody>
                 {tests.map(test => (
-                    <tr>
+                    <tr key={test.id}>
                         <td>{test.id}</td>
                         <td>{test.title}</td>
-                        <td><Button variant="success">START</Button></td>
+                        <td><Button variant="success" onClick={() => routeChange(test)}>START</Button></td>
                     </tr>
                 ))}
             </tbody>

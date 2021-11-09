@@ -5,5 +5,6 @@ export const REGISTER = '/register';
 export const FORGOT_PASSWORD = '/forgot-password';
 export const RESET_PASSWORD = '/reset-password';
 
-export const COURSER = '/courses';
+export const COURSES = '/courses';
 export const TESTS = '/courses/:id/tests';
+export const TEST = '/courses/:courseId/tests/:id';

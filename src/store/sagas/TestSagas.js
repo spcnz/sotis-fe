@@ -20,3 +20,13 @@ export function* getAllTests({ payload }) {
     // yield put(createTestError(true));
   }
 }
+
+export function* getTest({ payload }) {
+  try {
+    const data = yield call(TestService.getById, payload);
+    yield put(setCurrentTest(data));
+  } catch (error) {
+    // yield put(createTestError(true));
+  }
+}
+

@@ -9,9 +9,11 @@ import {
   HOME,
   CREATE_TEST,
   LOGIN,
-  TESTS
+  TESTS,
+  TEST
 } from '../routes';
 import TestTable from '../containers/Test/TestTable';
+import TakeTest from '../containers/Test/TakeTest';
 
  export default function Routes() {
   return (
@@ -21,6 +23,7 @@ import TestTable from '../containers/Test/TestTable';
           <PublicRoute restricted={true} component={Login} path={LOGIN} exact />
           <PrivateRoute component={TestStepper} path={CREATE_TEST} exact />
           <PrivateRoute component={TestTable} path={TESTS} exact />
+          <PrivateRoute component={TakeTest} path={TEST} exact />
         </Switch>
       </BrowserRouter>
   );
