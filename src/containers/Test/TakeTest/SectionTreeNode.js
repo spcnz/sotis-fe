@@ -14,9 +14,9 @@ const SectionTreeNode = ({ partId, section, idx }) => {
     const items = useSelector(state => state.item.all)
     const dispatch = useDispatch();
 
-    // useEffect(() => {
-    //     dispatch
-    // }, [])
+    useEffect(() => {
+        dispatch(getItems(section.id))
+    }, [])
 
     const onSectionClick = sectionId => {
         dispatch(getItems(sectionId));
