@@ -5,11 +5,11 @@ import { useSelector } from "react-redux";
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { useDispatch } from 'react-redux';
-import { getSections } from '../../store/actions/SectionActions';
-import { getParts } from '../../store/actions/PartActions';
-import { createItem, getItems } from '../../store/actions/ItemActions';
+import { getSections } from '../../../store/actions/SectionActions';
+import { getParts } from '../../../store/actions/PartActions';
+import { createItem, getItems } from '../../../store/actions/ItemActions';
 import InputGroup from 'react-bootstrap/InputGroup';
-import { TableBody } from '../../styles';
+import { TableBody } from '../../../styles';
 import Table from 'react-bootstrap/Table';
 import OptionModal from './OptionModal';
 

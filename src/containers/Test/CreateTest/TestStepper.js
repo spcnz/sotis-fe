@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { TestContainer } from '../../styles/index';
+import { TestContainer } from '../../../styles/index';
 import Stepper from 'react-simple-stepper-component';
 import TestInfo from './TestInfo';
 import PartInfo from './PartInfo';

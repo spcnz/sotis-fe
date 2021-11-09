@@ -6,9 +6,9 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Table from 'react-bootstrap/Table';
 import { useDispatch } from 'react-redux';
-import { getSections, createSection } from '../../store/actions/SectionActions';
-import { getParts } from '../../store/actions/PartActions';
-import { TableBody } from '../../styles';
+import { getSections, createSection } from '../../../store/actions/SectionActions';
+import { getParts } from '../../../store/actions/PartActions';
+import { TableBody } from '../../../styles';
 
 
 const SectionInfo = props => {

@@ -7,11 +7,11 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import { TableBody } from '../../styles';
+import { TableBody } from '../../../styles';
 import Table from 'react-bootstrap/Table';
 
 
-import { getOptions, createOption} from '../../store/actions/OptionActions';
+import { getOptions, createOption} from '../../../store/actions/OptionActions';
 
 
 const OptionModal = props => {

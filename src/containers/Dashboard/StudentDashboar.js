@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 import { getSubjects } from '../../store/actions/SubjectActions';
 import Card from 'react-bootstrap/Card';
@@ -9,10 +10,18 @@ import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 
 import course_img from '../../assets/course_img.png';
+import { TESTS } from "../../routes";
 
 const StudentDashboard = () => {
     const dispatch = useDispatch();
     let subjects = useSelector(state => state.subject.all);
+
+    const history = useHistory();
+
+    const routeChange = id =>{ 
+      let path = TESTS.replace(":id", id);
+      history.push(path);
+    }
     
     useEffect(() => {
         dispatch(getSubjects())
@@ -30,7 +39,7 @@ const StudentDashboard = () => {
                             <Card.Text>
                                 {subject.description}
                             </Card.Text>
-                            <Button variant="primary">View tests</Button>
+                            <Button variant="primary" onClick={() => routeChange(subject.id)}>View tests</Button>
                         </Card.Body>
                     </Card>
                 </Col>))}

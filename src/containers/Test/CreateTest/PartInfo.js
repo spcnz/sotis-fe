@@ -6,8 +6,8 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Table from 'react-bootstrap/Table';
 import { useDispatch } from 'react-redux';
-import { getParts, createPart } from '../../store/actions/PartActions';
-import { TableBody } from '../../styles';
+import { getParts, createPart } from '../../../store/actions/PartActions';
+import { TableBody } from '../../../styles';
 
 const LINEAR = 'LINEAR';
 const NON_LINEAR = 'NON_LINEAR';

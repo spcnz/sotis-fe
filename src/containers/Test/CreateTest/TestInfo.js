@@ -5,7 +5,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import InputGroup from 'react-bootstrap/InputGroup';
 import { useDispatch } from 'react-redux';
-import { createTest } from '../../store/actions/TestActions';
+import { createTest } from '../../../store/actions/TestActions';
 
 const TestInfo = props => {
     const [checked, setChecked] = useState(props.testInfo.time_dependency);

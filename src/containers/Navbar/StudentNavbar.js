@@ -20,10 +20,7 @@ const StudentNavbar = () => {
                 <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="me-auto">
                     <Nav.Link href={HOME}>Home</Nav.Link>
-                    <Nav.Link href="#link">Courses</Nav.Link>
-                    <NavDropdown title="Test" id="basic-nav-dropdown">
-                        {/* ovde nek se prikaze kao svi kursevi mozda nez mada nema smisla? */}
-                    </NavDropdown>
+                    <Nav.Link href={HOME}>Courses</Nav.Link>
                 </Nav>
                 <Nav>
                     <NavDropdown title={profile} id="basic-nav-dropdown">
