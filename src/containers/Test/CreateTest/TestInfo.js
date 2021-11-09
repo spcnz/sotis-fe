@@ -6,15 +6,18 @@ import Col from 'react-bootstrap/Col';
 import InputGroup from 'react-bootstrap/InputGroup';
 import { useDispatch } from 'react-redux';
 import { createTest } from '../../../store/actions/TestActions';
+import { useParams } from 'react-router';
 
 const TestInfo = props => {
     const [checked, setChecked] = useState(props.testInfo.time_dependency);
     const dispatch = useDispatch();
+    const {id} = useParams();
 
     const onChange = (field, value) => {
         props.setTestInfo(prevState => {
             let newState = {...prevState};
             newState[field] = value;
+            newState['subject_id'] = id;
             return newState;
         })
     }
