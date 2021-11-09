@@ -1,5 +1,5 @@
 import { Navbar, Nav, NavDropdown, Container } from 'react-bootstrap';
-import { CREATE_TEST, HOME } from '../../routes';
+import { COURSES, CREATE_TEST, HOME } from '../../routes';
 
 const TeacherNavbar = () => {
     const profile = (<span className="glyphicon glyphicon-user fa-lg"></span>);
@@ -20,7 +20,7 @@ const TeacherNavbar = () => {
                 <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="me-auto">
                     <Nav.Link href={HOME}>Home</Nav.Link>
-                    <Nav.Link href="#link">Subjects</Nav.Link>
+                    <Nav.Link href={COURSES}>Subjects</Nav.Link>
                     <NavDropdown title="Test" id="basic-nav-dropdown">
                         <NavDropdown.Item href={CREATE_TEST}>Create</NavDropdown.Item>
                         <NavDropdown.Item href="#action/3.2">View all</NavDropdown.Item>

@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 
 import { STUDENT, TEACHER } from '../consts';
 import StudentDashboard from "../containers/Dashboard/StudentDashboar";
+import SubjectsPage from "../containers/Subject";
 import { BackgroundImage, Title } from "../styles";
 
 
@@ -14,6 +15,8 @@ const HomePage = () => {
         <BackgroundImage>
             <Title>Study smart.</Title>
             {isAuthenticated && role == STUDENT && <StudentDashboard />}
+            
+
         </BackgroundImage>
     )
 }
