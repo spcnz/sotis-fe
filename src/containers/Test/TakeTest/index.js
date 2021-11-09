@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import Button from 'react-bootstrap/Button';
 
 import { Container, Row, Col } from "react-bootstrap";
 
@@ -9,10 +10,12 @@ import Question from "./Question";
 import { getTest } from '../../../store/actions/TestActions';
 
 const TestInfo = ({ test }) => {
+
     return (
         <>
             <h1>You are taking a test: {test.title}</h1>
             <h2>Time limit: {test.time_dependency ? ((test.time_limit_seconds / 60)+ 'min'): 'NO LIMIT'}</h2>
+            
         </>
     )
 }
@@ -28,6 +31,10 @@ const TakeTest = () => {
         dispatch(getTest(id))
     },[])
 
+    const submitTest = () => {
+
+    }
+    
     return (
         <Container>
             <Row style={{margin: '10px', padding: '10px'}}>
@@ -38,6 +45,7 @@ const TakeTest = () => {
                 {test && (
                     <Container>
                         <TestInfo test={test}/>
+                        <Button onClick={submitTest} variant="danger" style={{margin:'10px'}} >Submit</Button>
                         <Question />
                     </Container> )}
                 </Col> 
