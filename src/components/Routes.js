@@ -11,7 +11,7 @@ import {
   LOGIN,
   TESTS
 } from '../routes';
-import TestTable from '../containers/Test/CreateTest/TestTable';
+import TestTable from '../containers/Test/TestTable';
 
  export default function Routes() {
   return (
