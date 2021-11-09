@@ -1,4 +1,5 @@
 import ApiService from './ApiService';
+import jwt_decode from 'jwt-decode'
 
 const ENDPOINTS = {
   LOGIN: '/auth/login',
@@ -64,9 +65,22 @@ class AuthService extends ApiService {
     return user ? JSON.parse(user).access_token : undefined;
   };
 
+  getRole = () => {
+    const user = localStorage.getItem('user');
+    let decodedToken;
+    try {
+      decodedToken = jwt_decode( JSON.parse(user).access_token)
+    } catch (error) {
+      console.log(error)
+      return null
+    }
+    console.log(decodedToken)
+    return decodedToken.identity.role
+  };
+
   isAuthenticated = () => {
     const user = JSON.parse(localStorage.getItem('user'));
-    // return true;
+
     return user && user.access_token;
   };
 

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+const imageUrl = '../assets/image.jpg';
 
 export const Container = styled.div`
     background-color: rgba(255,255, 255, 1);
@@ -32,4 +33,29 @@ export const TableHead = styled.thead`
 export const TableBody = styled.tbody`
     width: 100%;
     height: 100px;
+`;
+
+
+export const BackgroundImage = styled.div`
+    background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),url('./image.jpg'),linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),url('./image.jpg');
+    background-size: cover;
+    height: 700px;
+    background-position: center;
+`;
+
+
+
+export const Title = styled.div`
+    position: absolute;
+    textAlign: center;
+    width: 1140px;
+    left: 50%;
+    top: 50%;
+    font-weight: 300;
+    text-transform: uppercase;
+    marginbottom: 20px;
+    color: #fff;
+    font-size: 240%;
+    word-spacing: 4px;
+    letter-spacing: 1px;
 `;

@@ -6,7 +6,7 @@ export function PrivateRoute({
   component: Component,
   ...rest
 }) {
-    const isAuthenticated = useSelector(state => state.authUser);
+    const isAuthenticated = useSelector(state => state.authUser.isAuth);
 
     return (
         <Route {...rest} 

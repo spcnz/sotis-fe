@@ -4,7 +4,7 @@ import { LOGIN } from '../../routes'
 const GuestNavbar = () => {
     
     return (
-        <Navbar bg="dark" variant="dark" expand="lg">
+        <Navbar bg="dark" variant="dark" expand="lg" style={{margin: 0}}>
             <Container>
                 <Navbar.Brand href="#home">
                     <img
