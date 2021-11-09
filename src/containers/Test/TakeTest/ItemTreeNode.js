@@ -10,35 +10,28 @@ import { getItems } from '../../../store/actions/ItemActions';
 import { useEffect } from "react";
 import SectionTreeNode from "./SectionTreeNode";
 
-const PartTreeNode = ({ testId, part, idx }) => {
+const ItemTreeNode = ({ sectionId, item, idx }) => {
     const dispatch = useDispatch()
     const sections = useSelector(state => state.section.all)
 
-    const onPartClick = id => {
-        console.log("getting sections for part id : ", id)
-        dispatch(getSections(id));
+    const onItemClick = id => {
+        //dispatch(getSections(id))
     }
     // useEffect(() => {
     //     dispatch
     // }, [])
-    console.log('Rerender of PART', part)
+    console.log('Rerender of ITEM', item)
+
     return (
         <TreeItem 
-            key={testId+ "_" + part.id} 
-            nodeId={part.id} 
-            label={`Part: ${++idx} ${part.title}`}
-            onClick={() => onPartClick(part.id)}
-        > {sections.map((section, sec_idx) => (
-            <SectionTreeNode
-                partId={part.id}
-                section={section}
-                idx={sec_idx}
-                key={sec_idx}
-            />
-        ))}
+            key={sectionId+ "_" + item.id} 
+            nodeId={item.id} 
+            label={`Question: ${++idx} `}
+            onClick={() => onItemClick(item.id)}
+        > 
         </TreeItem>
     )
 
 }
 
-export default PartTreeNode;
+export default ItemTreeNode;

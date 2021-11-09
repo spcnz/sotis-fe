@@ -6,12 +6,13 @@ import { Container, Row, Col } from "react-bootstrap";
 
 import TestTree from "./TestTree";
 import { getTest } from '../../../store/actions/TestActions';
+import TestBody from "./TestBody";
 
 const TestInfo = ({ test }) => {
     return (
         <>
-            <h1>YOU ARE STARTING TEST : {test.title}</h1>
-            <h2>Time limit: {test.time_dependency? ((test.time_limit_seconds / 60)+ 'min'): 'NO LIMIT'}</h2>
+            <h1>You are taking a test: {test.title}</h1>
+            <h2>Time limit: {test.time_dependency ? ((test.time_limit_seconds / 60)+ 'min'): 'NO LIMIT'}</h2>
         </>
     )
 }
@@ -36,6 +37,7 @@ const TakeTest = () => {
                 {test && (
                     <Container>
                         <TestInfo test={test}/>
+                        <TestBody questionId={1} />
                     </Container> )}
                 </Col> 
                 </Row>
