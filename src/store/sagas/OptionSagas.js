@@ -14,7 +14,6 @@ export function* getOptions({ payload }) {
 
 export function* optionCreate({ payload }) {
   try {
-    console.log(payload)
     const data = yield call(OptionService.create, payload);
     yield put(createdOption(data));
   } catch (error) {

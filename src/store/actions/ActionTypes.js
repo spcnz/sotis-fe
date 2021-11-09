@@ -46,3 +46,8 @@ export const CREATED_OPTION = 'CREATED_OPTION';
 export const EDIT_OPTION = 'EDIT_OPTION';
 export const GET_OPTIONS = 'GET_OPTIONS';
 export const SET_OPTIONS = 'SET_OPTIONS';
+
+
+//=== SUBJECT ===
+export const GET_SUBJECTS = 'GET_SUBJECTS';
+export const SET_SUBJECTS = 'SET_SUBJECTS';

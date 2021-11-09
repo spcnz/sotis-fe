@@ -74,7 +74,6 @@ class AuthService extends ApiService {
       console.log(error)
       return null
     }
-    console.log(decodedToken)
     return decodedToken.identity.role
   };
 

@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-const imageUrl = '../assets/image.jpg';
 
 export const Container = styled.div`
     background-color: rgba(255,255, 255, 1);
@@ -41,6 +40,7 @@ export const BackgroundImage = styled.div`
     background-size: cover;
     height: 700px;
     background-position: center;
+    background-attachment: scroll;
 `;
 
 

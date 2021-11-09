@@ -1,12 +1,12 @@
 import { Navbar, Nav, Container } from 'react-bootstrap';
-import { LOGIN } from '../../routes'
+import { LOGIN, HOME } from '../../routes'
 
 const GuestNavbar = () => {
     
     return (
-        <Navbar bg="dark" variant="dark" expand="lg" style={{margin: 0}}>
+        <Navbar bg="dark" variant="dark" expand="lg" style={{margin: 0}} >
             <Container>
-                <Navbar.Brand href="#home">
+                <Navbar.Brand href={HOME}>
                     <img
                         src="/logo.svg"
                         width="30"

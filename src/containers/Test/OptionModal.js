@@ -24,7 +24,6 @@ const OptionModal = props => {
         label: '',
         correct: false
     })
-    console.log(optionInfo);
     useEffect(() => {
         if (props.itemId) {
             dispatch(getOptions(props.itemId));

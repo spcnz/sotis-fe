@@ -8,6 +8,7 @@ import partReducer from './PartReducer';
 import sectionReducer from './SectionReducer';
 import itemReducer from './ItemReducer';
 import optionReducer from './OptionReducer';
+import subjectReducer from './SubjectReducer';
 
 const hist = history =>
   combineReducers({
@@ -18,6 +19,7 @@ const hist = history =>
     section: sectionReducer,
     item: itemReducer,
     option: optionReducer,
+    subject: subjectReducer,
     router: connectRouter(history)
 });
 

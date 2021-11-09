@@ -19,9 +19,7 @@ const TestStepper = () => {
         partId: null,
         score: 0
     })
-    console.log(currentStep)
     const [disabledNextBtn, setDisabledNextBtn] = useState(true);
-    console.log(itemInfo)
     const steps = [{ title: 'Test info'}, { title: 'Add part'}, { title: 'Add section'}, { title: 'Add questions' }]
     const onPrevious= () => {
         setCurrentStep(currentStep => currentStep > 0 ? currentStep - 1: 0)

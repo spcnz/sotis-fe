@@ -1,5 +1,5 @@
 import { Navbar, Nav, NavDropdown, Container } from 'react-bootstrap';
-import { CREATE_TEST } from '../../routes';
+import { CREATE_TEST, HOME } from '../../routes';
 
 const StudentNavbar = () => {
     const profile = (<span className="glyphicon glyphicon-user fa-lg"></span>);
@@ -7,7 +7,7 @@ const StudentNavbar = () => {
     return (
         <Navbar bg="dark" variant="dark" expand="lg" style={{margin: 0}} >
             <Container>
-                <Navbar.Brand href="#home">
+                <Navbar.Brand href={HOME}>
                     <img
                         src="/logo.svg"
                         width="30"
@@ -19,7 +19,7 @@ const StudentNavbar = () => {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="me-auto">
-                    <Nav.Link href="#home">Home</Nav.Link>
+                    <Nav.Link href={HOME}>Home</Nav.Link>
                     <Nav.Link href="#link">Courses</Nav.Link>
                     <NavDropdown title="Test" id="basic-nav-dropdown">
                         {/* ovde nek se prikaze kao svi kursevi mozda nez mada nema smisla? */}
