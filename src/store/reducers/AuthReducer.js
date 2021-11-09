@@ -8,7 +8,8 @@ const authReducer = (state =
   }, action) => {
   switch (action.type) {
     case AUTH_USER:
-      return { isAuth: action.payload }
+
+      return { isAuth: action.payload, role: AuthService.getRole() }
     default:
       return state;
   }
