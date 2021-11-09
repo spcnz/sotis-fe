@@ -1,5 +1,5 @@
 export const HOME = '/';
-export const CREATE_TEST = '/test/create';
+export const CREATE_TEST = '/test/create/:id/';
 export const LOGIN = '/login';
 export const REGISTER = '/register';
 export const FORGOT_PASSWORD = '/forgot-password';

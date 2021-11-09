@@ -7,7 +7,7 @@ import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 
 import { getAllTest, setCurrentTest } from '../../store/actions/TestActions';
-import { TEST } from '../../routes';
+import { CREATE_TEST, TEST } from '../../routes';
 import { STUDENT, TEACHER } from "../../consts";
 
 const TestTable = () => {
@@ -34,7 +34,7 @@ const TestTable = () => {
                     <tr>
                         <th>ID</th>
                         <th>Title</th>
-                        <th>{role == STUDENT ? 'Take test' : 'Action'}</th>
+                        <th>{role == STUDENT ? 'Take test' : 'Action' && <Button variant="success" onClick={() => history.push(CREATE_TEST.replace(':id', id))}>ADD NEW TEST</Button>}</th>
                     </tr>
                 </thead>
             <tbody>
