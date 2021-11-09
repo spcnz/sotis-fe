@@ -39,6 +39,9 @@ export const CREATED_ITEM = 'CREATED_ITEM';
 export const EDIT_ITEM = 'EDIT_ITEM';
 export const GET_ITEMS = 'GET_ITEMS';
 export const SET_ITEMS = 'SET_ITEMS';
+export const SET_ITEM = 'SET_ITEM';
+export const GET_ITEM = 'GET_ITEM';
+
 
 
 //=== OPTION ===

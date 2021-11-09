@@ -5,8 +5,8 @@ import { useParams } from "react-router-dom";
 import { Container, Row, Col } from "react-bootstrap";
 
 import TestTree from "./TestTree";
+import Question from "./Question";
 import { getTest } from '../../../store/actions/TestActions';
-import TestBody from "./TestBody";
 
 const TestInfo = ({ test }) => {
     return (
@@ -16,6 +16,7 @@ const TestInfo = ({ test }) => {
         </>
     )
 }
+
 
 const TakeTest = () => {
     const dispatch = useDispatch();
@@ -31,13 +32,13 @@ const TakeTest = () => {
         <Container>
             <Row style={{margin: '10px', padding: '10px'}}>
                 <Col xs={3} style={{margin: '10px'}}>
-                {test && (<TestTree test={test}/>) }
+                {test && (<TestTree test={test} />) }
                 </Col>
                 <Col style={{margin: '10px'}}>
                 {test && (
                     <Container>
                         <TestInfo test={test}/>
-                        <TestBody questionId={1} />
+                        <Question />
                     </Container> )}
                 </Col> 
                 </Row>

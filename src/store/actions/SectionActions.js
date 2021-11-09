@@ -8,6 +8,7 @@ export const getSections = payload => {
 };
 
 export const setSections = payload => {
+  console.log('ovooo', payload)
     return {
       type: SET_SECTIONS,
       payload: payload

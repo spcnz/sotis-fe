@@ -1,17 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
 
-import TreeView from '@mui/lab/TreeView';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import TreeItem from '@mui/lab/TreeItem';
 
-import { getSections } from '../../../store/actions/SectionActions';
 import { getItems } from '../../../store/actions/ItemActions';
 import { useEffect } from "react";
 import ItemTreeNode from "./ItemTreeNode";
 
 const SectionTreeNode = ({ partId, section, idx }) => {
-    const items = useSelector(state => state.item.all)
+    const items = useSelector(state  => state.item.all[section.id])
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -22,7 +18,9 @@ const SectionTreeNode = ({ partId, section, idx }) => {
         dispatch(getItems(sectionId));
     }
 
-    console.log('Rerender of SECTION', section)
+ 
+
+    console.log('Rerender of SECTION', section.title)
     return (
         <TreeItem 
             key={partId + "_" + section.id} 
@@ -31,7 +29,7 @@ const SectionTreeNode = ({ partId, section, idx }) => {
             onClick={() => onSectionClick(section.id)}
         >
 
-        {items.map((item, item_idx) => (
+        {items && items.map((item, item_idx) => (
             <ItemTreeNode
                 sectionId={section.id}
                 item={item}

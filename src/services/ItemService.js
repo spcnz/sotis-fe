@@ -8,11 +8,18 @@ const ENDPOINTS = {
 class ItemService extends ApiService {
 
   getAll = async sectionId => {
-  
     const { data } = await this.apiClient.get(ENDPOINTS.ALL.replace(":id", sectionId));
 
     return data;
   };
+
+  getById = async id => {
+    const { data } = await this.apiClient.get(ENDPOINTS.ALL.replace(":id", id));
+
+    return data;
+  };
+
+  
 
   create = async itemData => {
     const { data } = await this.apiClient.post(ENDPOINTS.CREATE, {

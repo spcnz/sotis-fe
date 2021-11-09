@@ -5,7 +5,7 @@ import { createdSection, setSections } from '../actions/SectionActions';
 export function* getSections({ payload }) {
   try {
     const data = yield call(SectionService.getAll, payload);
-    yield put(setSections(data));
+    yield put(setSections({ all: data, partId: payload }));
   } catch (error) {
     // yield put(createTestError(true));
   }
