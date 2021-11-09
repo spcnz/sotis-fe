@@ -27,6 +27,14 @@ const TestTable = () => {
         history.push(path);
       }
 
+
+    const renderTeacherButtons = testId => (
+        <div>
+            <Button variant="info" style={{marginRight:12}} onClick={() => history.push(TEST.replace(':id', testId).replace(':courseId', id))}>VIEW</Button>
+            <Button variant="warning" style={{marginRight:12}} onClick={() => history.push('/')}>RESULTS</Button>
+        </div>
+    )
+    
     return (
         <Container style={{margin: '40px', width: '50%'}}>
             <Table striped bordered hover>
@@ -43,7 +51,7 @@ const TestTable = () => {
                         <td>{test.id}</td>
                         <td>{test.title}</td>
                         <td>
-                            {role == TEACHER && <Button variant="info" style={{marginRight:12}} onClick={() => routeChange(test)}>VIEW</Button>}
+                            {role == TEACHER && renderTeacherButtons(test.id)}
                             {role == STUDENT && <Button variant="success" onClick={() => routeChange(test)}>START</Button>}
                         </td>
                     </tr>

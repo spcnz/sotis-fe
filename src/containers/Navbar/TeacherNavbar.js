@@ -21,13 +21,7 @@ const TeacherNavbar = () => {
                 <Nav className="me-auto">
                     <Nav.Link href={HOME}>Home</Nav.Link>
                     <Nav.Link href={COURSES}>Subjects</Nav.Link>
-                    <NavDropdown title="Test" id="basic-nav-dropdown">
-                        <NavDropdown.Item href={CREATE_TEST}>Create</NavDropdown.Item>
-                        <NavDropdown.Item href="#action/3.2">View all</NavDropdown.Item>
-                        <NavDropdown.Item href="#action/3.3">Review</NavDropdown.Item>
-                        <NavDropdown.Divider />
-                        <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
-                    </NavDropdown>
+                    
                 </Nav>
                 <Nav>
                     <NavDropdown title={profile} id="basic-nav-dropdown">
