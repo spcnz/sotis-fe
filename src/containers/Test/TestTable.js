@@ -8,11 +8,13 @@ import Button from 'react-bootstrap/Button';
 
 import { getAllTest, setCurrentTest } from '../../store/actions/TestActions';
 import { TEST } from '../../routes';
+import { STUDENT, TEACHER } from "../../consts";
 
 const TestTable = () => {
     const dispatch = useDispatch();
     const { id } = useParams()
     const tests = useSelector(state => state.test.all)
+    const role = useSelector(state => state.authUser.role)
     const history = useHistory();
 
     useEffect(() => {
@@ -32,7 +34,7 @@ const TestTable = () => {
                     <tr>
                         <th>ID</th>
                         <th>Title</th>
-                        <th>Take test</th>
+                        <th>{role == STUDENT ? 'Take test' : 'Action'}</th>
                     </tr>
                 </thead>
             <tbody>
@@ -40,7 +42,10 @@ const TestTable = () => {
                     <tr key={test.id}>
                         <td>{test.id}</td>
                         <td>{test.title}</td>
-                        <td><Button variant="success" onClick={() => routeChange(test)}>START</Button></td>
+                        <td>
+                            {role == TEACHER && <Button variant="info" style={{marginRight:12}} onClick={() => routeChange(test)}>VIEW</Button>}
+                            {role == STUDENT && <Button variant="success" onClick={() => routeChange(test)}>START</Button>}
+                        </td>
                     </tr>
                 ))}
             </tbody>
