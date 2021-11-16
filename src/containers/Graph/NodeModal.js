@@ -9,7 +9,7 @@ import Button from 'react-bootstrap/Button';
 
 import { createSection } from '../../store/actions/SectionActions';
 
-const NodeModal = ({ partId, show, setShow, fullscreen }) => {
+const NodeModal = ({ partId, show, setShow, fullscreen, setAlert }) => {
     const dispatch = useDispatch();
     const [title, setTitle] = useState('');
 
@@ -19,7 +19,8 @@ const NodeModal = ({ partId, show, setShow, fullscreen }) => {
             title,
             partId
         }))
-        // setShow(false)
+        setShow(false)
+        setAlert({show: true, msg: 'Successfully added new section!', variant: 'success'})
     }
 
 

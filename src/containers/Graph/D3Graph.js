@@ -9,7 +9,7 @@ const config = {
     "focusAnimationDuration": 0.75,
     "focusZoom": 1,
     "freezeAllDragEvents": false,
-    "height": 800,
+    "height": 400,
     "highlightDegree": 1,
     "highlightOpacity": 1,
     "linkHighlightBehavior": false,
@@ -17,7 +17,8 @@ const config = {
     "minZoom": 0.1,
     "nodeHighlightBehavior": false,
     "staticGraph": false,
-    "width": 800,
+    "panAndZoom": true,
+    "width": 400,
     "d3": {
       "alphaTarget": 0.05,
       "gravity": -100,
@@ -26,6 +27,7 @@ const config = {
       "disableLinkForce": false
     },
     "node": {
+      "labelProperty": "title",
       "color": "#d3d3d3",
       "fontColor": "black",
       "fontSize": 8,
@@ -35,7 +37,6 @@ const config = {
       "highlightFontWeight": "normal",
       "highlightStrokeColor": "SAME",
       "highlightStrokeWidth": "SAME",
-      "labelProperty": "id",
       "mouseCursor": "pointer",
       "opacity": 1,
       "renderLabel": true,

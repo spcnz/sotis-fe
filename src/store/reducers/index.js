@@ -9,6 +9,7 @@ import sectionReducer from './SectionReducer';
 import itemReducer from './ItemReducer';
 import optionReducer from './OptionReducer';
 import subjectReducer from './SubjectReducer';
+import graphReducer from './GraphReducer';
 
 const hist = history =>
   combineReducers({
@@ -20,6 +21,7 @@ const hist = history =>
     item: itemReducer,
     option: optionReducer,
     subject: subjectReducer,
+    graph: graphReducer,
     router: connectRouter(history)
 });
 

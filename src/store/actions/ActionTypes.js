@@ -59,3 +59,14 @@ export const SET_SUBJECTS = 'SET_SUBJECTS';
 //=== RESPONSE ===
 export const ADD_RESPONSE = 'ADD_RESPONSE';
 export const SUBMIT_RESPONSES = 'SUBMIT_RESPONSES';
+
+//=== GRAPH ===
+export const GET_DOMAIN = 'GET_DOMAIN';
+export const CREATE_DOMAIN = 'CREATE_DOMAIN';
+export const SET_DOMAIN = 'SET_DOMAIN';
+
+export const ADD_NODE = 'ADD_NODE';
+export const ADDD_NODE = 'ADD_NODE';
+
+export const ADD_LINK = 'ADD_LINK';
+export const ADDED_LINK = 'ADDED_LINK';
