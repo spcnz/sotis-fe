@@ -55,3 +55,7 @@ export const SET_OPTIONS = 'SET_OPTIONS';
 //=== SUBJECT ===
 export const GET_SUBJECTS = 'GET_SUBJECTS';
 export const SET_SUBJECTS = 'SET_SUBJECTS';
+
+//=== RESPONSE ===
+export const ADD_RESPONSE = 'ADD_RESPONSE';
+export const SUBMIT_RESPONSES = 'SUBMIT_RESPONSES';

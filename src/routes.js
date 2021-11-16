@@ -8,3 +8,5 @@ export const RESET_PASSWORD = '/reset-password';
 export const COURSES = '/courses';
 export const TESTS = '/courses/:id/tests';
 export const TEST = '/courses/:courseId/tests/:id';
+
+export const GRAPH = '/graph'

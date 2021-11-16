@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import Button from 'react-bootstrap/Button';
 
 import { Container, Row, Col } from "react-bootstrap";
 
@@ -45,7 +44,6 @@ const TakeTest = () => {
                 {test && (
                     <Container>
                         <TestInfo test={test}/>
-                        <Button onClick={submitTest} variant="danger" style={{margin:'10px'}} >Submit</Button>
                         <Question />
                     </Container> )}
                 </Col> 

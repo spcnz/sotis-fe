@@ -15,8 +15,10 @@ const SectionInfo = props => {
     const dispatch = useDispatch();
     const testId = useSelector(state => state.test.current);
     const parts = useSelector(state => state.part.all);
-    const sections = useSelector(state => state.section.all);
-
+    const sections = useSelector(state => 
+        props.sectionInfo.partId in state.section.all ? 
+            state.section.all[props.sectionInfo.partId]: []);
+    console.log(sections)
     const onChange = (field, value) => {
         props.setSectionInfo(prevState => {
             let newState = {...prevState};

@@ -5,14 +5,22 @@ const initialState = {
   };
 
 const sectionReducer = (state = initialState, action) => {
+  let newState = null;
   switch (action.type) {
     case SET_SECTIONS:
-      const new_state = {...state, all : {...state.all}};
+      newState = {...state, all : {...state.all}};
       const { partId, all } = action.payload
-      new_state.all[partId] = all
-      return new_state;
+      newState.all[partId] = all
+      return newState;
     case CREATED_SECTION:
-      return {...state, all : [...state.all, action.payload]}
+      console.log('heree', action)
+      newState = {...state, all : {...state.all} };
+      console.log(newState)
+      const id = action.payload.part_id
+      console.log('id', id)
+      newState.all[id] = [...newState.all[id], action.payload];
+      console.log(newState)
+      return newState;
     default:
       return state;
   }

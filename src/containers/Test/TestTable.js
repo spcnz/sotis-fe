@@ -23,7 +23,7 @@ const TestTable = () => {
 
     const routeChange = test =>{ 
         let path = TEST.replace(":id", test.id);
-        path = path.replace("courseId", id);
+        path = path.replace(":courseId", id);
         history.push(path);
       }
 

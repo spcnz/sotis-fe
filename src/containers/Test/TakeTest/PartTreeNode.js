@@ -3,14 +3,18 @@ import { useDispatch, useSelector } from "react-redux";
 import TreeItem from '@mui/lab/TreeItem';
 
 import { getSections } from '../../../store/actions/SectionActions';
+import { setCurrentPart } from '../../../store/actions/PartActions';
+import { setItem } from '../../../store/actions/ItemActions';
 import SectionTreeNode from "./SectionTreeNode";
 
 const PartTreeNode = ({ testId, part, idx }) => {
     const dispatch = useDispatch()
     const sections = useSelector(state => state.section.all[part.id])
 
-    const onPartClick = id => {
-        dispatch(getSections(id));
+    const onPartClick = part => {
+        dispatch(getSections(part.id));
+        dispatch(setCurrentPart(part))
+        dispatch(setItem(null))
     }
 
     console.log('Rerender of PART', part.title)
@@ -19,7 +23,7 @@ const PartTreeNode = ({ testId, part, idx }) => {
             key={testId+ "_" + part.id} 
             nodeId={part.id} 
             label={`Part: ${++idx} ${part.title}`}
-            onClick={() => onPartClick(part.id)} 
+            onClick={() => onPartClick(part)} 
       > {sections && sections.map((section, sec_idx) => (
             <SectionTreeNode
                 partId={part.id}

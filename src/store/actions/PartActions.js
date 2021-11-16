@@ -1,4 +1,4 @@
-import { CREATE_PART, GET_PARTS, SET_PARTS, CREATED_PART } from './ActionTypes';
+import { CREATE_PART, GET_PARTS, SET_PARTS, CREATED_PART, SET_CURRENT_PART } from './ActionTypes';
 
 export const getParts = payload => {
   return {
@@ -26,4 +26,11 @@ export const createdPart = payload => {
       type: CREATED_PART,
       payload: payload
     };
+};
+
+export const setCurrentPart = payload => {
+  return {
+    type: SET_CURRENT_PART,
+    payload: payload
+  };
 };

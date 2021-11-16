@@ -1,7 +1,8 @@
-import { CREATED_PART, SET_PARTS } from '../actions/ActionTypes';
+import { CREATED_PART, SET_CURRENT_PART, SET_PARTS } from '../actions/ActionTypes';
 
 const initialState = {
-    all: []
+    all: [],
+    current : {}
   };
 
 const partReducer = (state = initialState, action) => {
@@ -10,6 +11,8 @@ const partReducer = (state = initialState, action) => {
       return {...state, all : action.payload }
     case CREATED_PART:
       return {...state, all : [...state.all, action.payload]}
+    case SET_CURRENT_PART:
+      return {...state, current: action.payload }
     default:
       return state;
   }

@@ -7,13 +7,17 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 
+
 import { getOptions } from '../../../store/actions/OptionActions';
 import { setItem } from '../../../store/actions/ItemActions';
+
+import { SIMULTANEOUS, INVIDIVIDUAL } from '../../../consts';
 
 const Question = () => {
     const dispatch = useDispatch();
     const item = useSelector(state => state.item.current)
     const itemsBySection = useSelector(state => state.item.all)
+    const submission = useSelector(state => state.part.current.submission)
     const options = useSelector(state => state.option.all)
 
     useEffect(() => {
@@ -89,6 +93,8 @@ const Question = () => {
                         </Button>
                     </Col>
                 </Row>
+                <Button variant="danger" style={{margin:'10px'}} >Submit {submission == SIMULTANEOUS ? 'part': 'question'}</Button>
+
             </Container>
             )
         }
