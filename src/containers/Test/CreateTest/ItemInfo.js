@@ -13,7 +13,7 @@ import { TableBody } from '../../../styles';
 import Table from 'react-bootstrap/Table';
 import OptionModal from './OptionModal';
 
-const ItemInfo = props => {
+const ItemInfo =({ setItemInfo, itemInfo }) => {
     const dispatch = useDispatch();
     const sections = useSelector(state => state.section.all);
     const testId = useSelector(state => state.test.current);
@@ -22,7 +22,7 @@ const ItemInfo = props => {
     const [modal, setModal] = useState({show: false, itemId: null});
 
     const onChange = (field, value) => {
-        props.setItemInfo(prevState => {
+        setItemInfo(prevState => {
             let newState = {...prevState};
             newState[field] = value;
             return newState;
@@ -30,14 +30,14 @@ const ItemInfo = props => {
     }
 
     useEffect(() => {
-        if (props.itemInfo.partId)
-            dispatch(getSections(props.itemInfo.partId))
+        if (itemInfo.partId)
+            dispatch(getSections(itemInfo.partId))
         else {
-            props.setItemInfo(prevState => {
+            setItemInfo(prevState => {
                 return {...prevState, sectionId: null}
             })
         }
-    }, [props.itemInfo.partId])
+    }, [itemInfo.partId, dispatch, setItemInfo])
 
     useEffect(() => {
         if (testId) {
@@ -46,15 +46,15 @@ const ItemInfo = props => {
     }, [testId, dispatch])
 
     useEffect(() => {
-        if (props.itemInfo.sectionId)
-            dispatch(getItems(props.itemInfo.sectionId))
-    }, [props.itemInfo.sectionId, dispatch])
+        if (itemInfo.sectionId)
+            dispatch(getItems(itemInfo.sectionId))
+    }, [itemInfo.sectionId, dispatch])
 
 
 
     const submit = e => {
         e.preventDefault();
-        dispatch(createItem(props.itemInfo));
+        dispatch(createItem(itemInfo));
     }
 
     const openModel = itemId => {
@@ -73,7 +73,7 @@ const ItemInfo = props => {
                         ))}
                     </Form.Select>
                 </Col>
-                {props.itemInfo.partId && (<Col xs={6} md={4}>
+                {itemInfo.partId && (<Col xs={6} md={4}>
                     <Form.Label>Choose section</Form.Label>
                     <Form.Select aria-label="Part" onChange={e => onChange('sectionId', e.target.value)}>
                         <option value={''} selected></option>
@@ -83,7 +83,7 @@ const ItemInfo = props => {
                     </Form.Select>
                 </Col>)}
             </Row>
-            {props.itemInfo.partId && props.itemInfo.sectionId &&
+            {itemInfo.partId && itemInfo.sectionId &&
             <div>
             <Row className="mb-3">
                 <Col xs={12} md={12}>
@@ -104,7 +104,7 @@ const ItemInfo = props => {
                             required 
                             onChange={e => onChange('score', e.target.value)} 
                             type="number" 
-                            value={props.itemInfo.score}   />
+                            value={itemInfo.score}   />
                     </InputGroup>
                 </Col>
                 <Col xs={4} md={4}>
@@ -114,7 +114,7 @@ const ItemInfo = props => {
                             required 
                             onChange={e => onChange('maxChoices', e.target.value)} 
                             type="number" 
-                            value={props.itemInfo.maxChoices}   />
+                            value={itemInfo.maxChoices}   />
                     </InputGroup>
                 </Col>
                 <Col xs={4} md={4}>

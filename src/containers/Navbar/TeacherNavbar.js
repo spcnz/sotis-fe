@@ -21,6 +21,7 @@ const TeacherNavbar = () => {
                 <Nav className="me-auto">
                     <Nav.Link href={HOME}>Home</Nav.Link>
                     <Nav.Link href={COURSES}>Subjects</Nav.Link>
+                    <Nav.Link href={CREATE_TEST}>Create test</Nav.Link>
                     <Nav.Link href={GRAPH}>Knowledge graph</Nav.Link>
                 </Nav>
                 <Nav>

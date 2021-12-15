@@ -28,7 +28,7 @@ const TakeTest = () => {
 
     useEffect(() => {
         dispatch(getTest(id))
-    },[])
+    },[dispatch, id])
 
     const submitTest = () => {
 

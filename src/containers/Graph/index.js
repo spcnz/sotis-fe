@@ -29,7 +29,7 @@ const GraphContainer = () => {
     useEffect(() => {
         if (partId)
             dispatch(getSections(partId))
-    }, [partId])
+    }, [partId, dispatch])
 
     const data = {
         nodes: sections || [],

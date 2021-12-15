@@ -44,7 +44,7 @@ const TestStepper = () => {
                 {currentStep === 1 && <PartInfo setPartInfo={setPartInfo} partInfo={partInfo} />}
                 {currentStep === 2 && <SectionInfo setSectionInfo={setSectionInfo} sectionInfo={sectionInfo} />}
                 {currentStep === 3 && <ItemInfo setItemInfo={setItemInfo} itemInfo={itemInfo} />}
-                {currentStep == 4 && (
+                {currentStep === 4 && (
                      <Alert key={1} variant="success">
                      This is a alert—check it out!
                    </Alert>

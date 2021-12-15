@@ -10,7 +10,7 @@ class TestService extends ApiService {
 
   create = async testData => {
     testData['subject_id'] = 1;
-    const { data } = await this.apiClient.post(ENDPOINTS.CREATE, {... testData, time_limit_seconds: testData.time_limit_seconds *60});
+    const { data } = await this.apiClient.post(ENDPOINTS.CREATE, {...testData, time_limit_seconds: testData.time_limit_seconds *60});
 
     return data;
   };

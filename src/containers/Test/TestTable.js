@@ -6,7 +6,7 @@ import Table from 'react-bootstrap/Table';
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 
-import { getAllTest, setCurrentTest } from '../../store/actions/TestActions';
+import { getAllTest } from '../../store/actions/TestActions';
 import { CREATE_TEST, TEST } from '../../routes';
 import { STUDENT, TEACHER } from "../../consts";
 
@@ -19,7 +19,7 @@ const TestTable = () => {
 
     useEffect(() => {
         dispatch(getAllTest(id))
-    },[])
+    },[dispatch, id])
 
     const routeChange = test =>{ 
         let path = TEST.replace(":id", test.id);
@@ -42,7 +42,7 @@ const TestTable = () => {
                     <tr>
                         <th>ID</th>
                         <th>Title</th>
-                        <th>{role == STUDENT ? 'Take test' : 'Action' && <Button variant="success" onClick={() => history.push(CREATE_TEST.replace(':id', id))}>ADD NEW TEST</Button>}</th>
+                        <th>{role === STUDENT ? 'Take test' : 'Action' && <Button variant="success" onClick={() => history.push(CREATE_TEST.replace(':id', id))}>ADD NEW TEST</Button>}</th>
                     </tr>
                 </thead>
             <tbody>
@@ -51,8 +51,8 @@ const TestTable = () => {
                         <td>{test.id}</td>
                         <td>{test.title}</td>
                         <td>
-                            {role == TEACHER && renderTeacherButtons(test.id)}
-                            {role == STUDENT && <Button variant="success" onClick={() => routeChange(test)}>START</Button>}
+                            {role === TEACHER && renderTeacherButtons(test.id)}
+                            {role === STUDENT && <Button variant="success" onClick={() => routeChange(test)}>START</Button>}
                         </td>
                     </tr>
                 ))}

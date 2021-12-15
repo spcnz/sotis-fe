@@ -26,7 +26,7 @@ const SubjectsPage = () => {
     
     useEffect(() => {
         dispatch(getSubjects())
-    },[])
+    },[dispatch])
 
     console.log("subs ", subjects)
 

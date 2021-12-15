@@ -25,13 +25,13 @@ const StudentDashboard = () => {
     
     useEffect(() => {
         dispatch(getSubjects())
-    },[])
+    },[dispatch])
 
     return (
         <Container>
             <Row style={{margin: '10px', padding: '10px'}}>
             {subjects.map(subject => (
-                <Col style={{margin: '10px'}}>
+                <Col key={subject.id} style={{margin: '10px'}}>
                     <Card style={{ width: '30rem' }} >
                         <Card.Img variant="top" src={course_img} />
                         <Card.Body>

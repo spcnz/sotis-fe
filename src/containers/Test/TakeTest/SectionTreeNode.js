@@ -12,7 +12,7 @@ const SectionTreeNode = ({ partId, section, idx }) => {
 
     useEffect(() => {
         dispatch(getItems(section.id))
-    }, [])
+    }, [dispatch, section.id])
 
     const onSectionClick = sectionId => {
         dispatch(getItems(sectionId));

@@ -28,7 +28,7 @@ const OptionModal = props => {
         if (props.itemId) {
             dispatch(getOptions(props.itemId));
         }
-    }, [props.itemId])
+    }, [props.itemId, dispatch])
 
     const onChange = (field, value) => {
         setOptionInfo(prevState => {

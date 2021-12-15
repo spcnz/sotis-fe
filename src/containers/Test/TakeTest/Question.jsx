@@ -23,22 +23,22 @@ const Question = () => {
     useEffect(() => {
         if (item)
             dispatch(getOptions(item.id))
-    }, [item])
+    }, [item, dispatch])
     console.log("RE RENDER QUESTION-a ", item)
     
     const onPrevious = () => {
         const items = itemsBySection[item.section_id]
         console.log('heree')
-        const currentIndex = items.findIndex(el => el.id == item.id);
+        const currentIndex = items.findIndex(el => el.id === item.id);
         console.log(currentIndex)
-        if (currentIndex != 0)
+        if (currentIndex !== 0)
             dispatch(setItem(items[currentIndex - 1]))
     }   
 
     const onNext = () => {
         const items = itemsBySection[item.section_id]
-        const currentIndex = items.findIndex(el => el.id == item.id);
-        if (currentIndex != (items.length - 1))
+        const currentIndex = items.findIndex(el => el.id === item.id);
+        if (currentIndex !== (items.length - 1))
             dispatch(setItem(items[currentIndex + 1]))
     }   
 
@@ -93,7 +93,7 @@ const Question = () => {
                         </Button>
                     </Col>
                 </Row>
-                <Button variant="danger" style={{margin:'10px'}} >Submit {submission == SIMULTANEOUS ? 'part': 'question'}</Button>
+                <Button variant="danger" style={{margin:'10px'}} >Submit {submission === SIMULTANEOUS ? 'part': 'question'}</Button>
 
             </Container>
             )
