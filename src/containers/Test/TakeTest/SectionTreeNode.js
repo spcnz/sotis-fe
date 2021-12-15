@@ -2,31 +2,18 @@ import { useDispatch, useSelector } from "react-redux";
 
 import TreeItem from '@mui/lab/TreeItem';
 
-import { getItems } from '../../../store/actions/ItemActions';
-import { useEffect } from "react";
 import ItemTreeNode from "./ItemTreeNode";
+import { setCurrentSection } from "../../../store/actions/SectionActions";
 
-const SectionTreeNode = ({ partId, section, idx }) => {
-    const items = useSelector(state  => state.item.all[section.id])
+const SectionTreeNode = ({ partId, section, idx, items }) => {
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        dispatch(getItems(section.id))
-    }, [dispatch, section.id])
-
-    const onSectionClick = sectionId => {
-        dispatch(getItems(sectionId));
-    }
-
- 
-
-    console.log('Rerender of SECTION', section.title)
     return (
         <TreeItem 
             key={partId + "_" + section.id} 
-            nodeId={section.id} 
+            nodeId={section.id + ""} 
             label={`Section: ${++idx} ${section.title}`}
-            onClick={() => onSectionClick(section.id)}
+            onClick={() => dispatch(setCurrentSection(section))}
         >
 
         {items && items.map((item, item_idx) => (
@@ -35,6 +22,7 @@ const SectionTreeNode = ({ partId, section, idx }) => {
                 item={item}
                 idx={item_idx}
                 key={item_idx}
+                options={item?.options}
             />
         ))}
         </TreeItem>

@@ -15,24 +15,23 @@ import LinkModal from './LinkModal';
 const GraphContainer = () => {
 
     const partId = useSelector(state => state.part.current.id);
-    const sections = useSelector(state => partId? state.section.all[partId]: []);
-    const links = useSelector(state => state.graph.links );
+    const sections = useSelector(state => state.section.all);
+    console.log(sections, 'sekcije suu')
+
+    const links = useSelector(state => state.graph.links);
     const [show, setShow] = useState(false);
     const [showLinkModal, setShowLinkModal] = useState(false);
     const [alert, setAlert] = useState({show: false, msg: '', variant: ''});
     const [domain, setDomain] = useState({ name : '', id: null});
     const dispatch = useDispatch();
 
-    console.log("PAAART ID :", partId);
-    console.log("sections :", sections);
-    console.log("LIIINKS", links)
     useEffect(() => {
         if (partId)
             dispatch(getSections(partId))
     }, [partId, dispatch])
 
     const data = {
-        nodes: sections || [],
+        nodes:  sections || [],
         links: links || []
 
       };
@@ -108,8 +107,7 @@ const GraphContainer = () => {
                 setShow={setShowLinkModal}
                 fullscreen={false}
                 partId={partId}
-                data={sections || []}
-                domain={partId}
+                data={sections}
             /> 
         </Container>
     )

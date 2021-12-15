@@ -28,8 +28,6 @@ const SubjectsPage = () => {
         dispatch(getSubjects())
     },[dispatch])
 
-    console.log("subs ", subjects)
-
     return (
         <BackgroundImage>
         <Container>

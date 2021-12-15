@@ -7,6 +7,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import TestTree from "./TestTree";
 import Question from "./Question";
 import { getTest } from '../../../store/actions/TestActions';
+import { setOptionResults } from "../../../store/actions/OptionActions";
 
 const TestInfo = ({ test }) => {
 
@@ -14,25 +15,32 @@ const TestInfo = ({ test }) => {
         <>
             <h1>You are taking a test: {test.title}</h1>
             <h2>Time limit: {test.time_dependency ? ((test.time_limit_seconds / 60)+ 'min'): 'NO LIMIT'}</h2>
-            
         </>
     )
 }
-
 
 const TakeTest = () => {
     const dispatch = useDispatch();
     const test = useSelector(state => state.test.current)
     const { id } = useParams();
-    console.log('Rerender of parent  : ', test)
 
     useEffect(() => {
         dispatch(getTest(id))
     },[dispatch, id])
 
-    const submitTest = () => {
+    useEffect(() => {
+        let options = []
+        test?.parts?.forEach(part => {
+            part.sections?.forEach(section => {
+                section.items?.forEach(item => options.push({
+                    item_id: item.id,
+                    options: item.options
+                }))
+            })
+        })
+        dispatch(setOptionResults(options))
+    }, [dispatch, test])
 
-    }
     
     return (
         <Container>

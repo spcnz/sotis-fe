@@ -2,7 +2,8 @@ import ApiService from './ApiService';
 
 const ENDPOINTS = {
   CREATE: '/api/section',
-  ALL: 'api/section?part_id=:id'
+  ALL: 'api/section?part_id=:id',
+  LINK: 'api/section/link'
 };
 
 class SectionService extends ApiService {
@@ -18,6 +19,13 @@ class SectionService extends ApiService {
 
     return data;
   };
+
+  linkSections = async ({ link, domainId }) => {
+    const { data } = await this.apiClient.post(ENDPOINTS.LINK, link);
+
+    return data;
+  };
+
 
 }
 

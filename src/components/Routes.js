@@ -12,12 +12,14 @@ import {
   TESTS,
   TEST,
   COURSES,
-  GRAPH
+  GRAPH,
+  RESULTS
 } from '../routes';
 import TestTable from '../containers/Test/TestTable';
 import TakeTest from '../containers/Test/TakeTest';
 import SubjectsPage from '../containers/Subject';
 import { default as Graph }  from '../containers/Graph';
+import TestResults from '../containers/TestResults';
 
 export default function Routes() {
   return (
@@ -30,6 +32,7 @@ export default function Routes() {
           <PrivateRoute component={TestTable} path={TESTS} exact />
           <PrivateRoute component={TakeTest} path={TEST} exact />
           <PrivateRoute component={Graph} path={GRAPH} exact />
+          <PrivateRoute component={TestResults} path={RESULTS} exact />
         </Switch>
       </BrowserRouter>
   );

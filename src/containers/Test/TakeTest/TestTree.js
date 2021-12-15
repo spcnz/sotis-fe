@@ -15,7 +15,7 @@ const TestTree = ({ test }) => {
             sx={{ height: 240, flexGrow: 1, maxWidth: 400, overflowY: 'auto' }}
         >
             <TreeItem  
-                nodeId={test.id} 
+                nodeId={test.id + ""} 
                 label={`Test: ${test.title}`}
                 >
                 {test.parts.map((part, idx) => (
@@ -24,6 +24,7 @@ const TestTree = ({ test }) => {
                         part={part}
                         idx={idx}
                         key={idx}
+                        sections={part?.sections}
                     />
                 ))}
             </TreeItem>

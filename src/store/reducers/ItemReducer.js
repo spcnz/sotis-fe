@@ -8,10 +8,7 @@ const initialState = {
 const itemReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_ITEMS:
-      const new_state = {...state, all : {...state.all}};
-      const { sectionId, all } = action.payload
-      new_state.all[sectionId] = all
-      return new_state;
+      return {...state, all: action.payload };
     case CREATED_ITEM:
       return {...state, all : [...state.all, action.payload]}
     case SET_ITEM:

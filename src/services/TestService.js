@@ -3,7 +3,9 @@ import ApiService from './ApiService';
 const ENDPOINTS = {
   CREATE: 'api/test',
   ALL: 'api/test?subject_id=:id',
-  GET_ONE:  'api/test/:id'
+  GET_ONE:  'api/test/:id',
+  SUBMIT:  'api/itemresult',
+  GENERATE: 'api/itemresult/generate'
 };
 
 class TestService extends ApiService {
@@ -27,6 +29,19 @@ class TestService extends ApiService {
     return data;
   };
 
+  submit = async test => {
+    console.log('odavde', test);
+    const { data } = await this.apiClient.post(ENDPOINTS.SUBMIT, { reponses: test });
+
+    return data;
+  };
+
+  generateResults = async testId => {
+    console.log('odavde', testId);
+    const { data } = await this.apiClient.get(ENDPOINTS.GENERATE);
+
+    return data;
+  };
 }
 
 const testService = new TestService();

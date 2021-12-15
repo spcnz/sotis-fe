@@ -9,8 +9,9 @@ import Button from 'react-bootstrap/Button';
 
 import { linkNodes } from '../../store/actions/GraphActions';
 
-const LinkModal = ({ partId, show, setShow, fullscreen, data, id }) => {
+const LinkModal = ({ partId, show, setShow, fullscreen, data }) => {
     const dispatch = useDispatch();
+    console.log('dataaa',data)
     const [source, setSource] = useState(null);
     const [target, setTarget] = useState(null);
 
@@ -21,7 +22,7 @@ const LinkModal = ({ partId, show, setShow, fullscreen, data, id }) => {
                     source,
                     target
                 },
-            'domainId': id
+            'domainId': partId
         }))
         setShow(false)
     }
@@ -44,8 +45,8 @@ const LinkModal = ({ partId, show, setShow, fullscreen, data, id }) => {
                         <Col xs={5}>
                             <Form.Label>Choose source</Form.Label>
                             <Form.Select aria-label="Part" onChange={e => setSource(parseInt(e.target.value))}>
-                                <option value={''} selected></option>
-                                {data.map(section => (
+                                <option value={''}></option>
+                                {data?.map(section => (
                                     <option key={section.id} value={section.id}>{section.title}</option>
                                 ))}
                             </Form.Select>
@@ -56,7 +57,7 @@ const LinkModal = ({ partId, show, setShow, fullscreen, data, id }) => {
                         <Col xs={5} >
                             <Form.Label>Choose target</Form.Label>
                             <Form.Select aria-label="target" onChange={e => setTarget(parseInt(e.target.value))}>
-                                <option value={''} selected></option>
+                                <option value={''}></option>
                                 {data.map(section => (
                                     <option key={section.id}  value={section.id}>{section.title}</option>
                                 ))}

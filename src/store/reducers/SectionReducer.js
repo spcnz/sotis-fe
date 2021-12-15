@@ -1,26 +1,18 @@
-import { CREATED_SECTION, SET_SECTIONS } from '../actions/ActionTypes';
+import { CREATED_SECTION, SET_CURRENT_SECTION, SET_SECTIONS } from '../actions/ActionTypes';
 
 const initialState = {
-    all: {}
+    all: [],
+    current : null
   };
 
 const sectionReducer = (state = initialState, action) => {
-  let newState = null;
   switch (action.type) {
     case SET_SECTIONS:
-      newState = {...state, all : {...state.all}};
-      const { partId, all } = action.payload
-      newState.all[partId] = all
-      return newState;
+      return {...state, all: action.payload };
     case CREATED_SECTION:
-      console.log('heree', action)
-      newState = {...state, all : {...state.all} };
-      console.log(newState)
-      const id = action.payload.part_id
-      console.log('id', id)
-      newState.all[id] = [...newState.all[id], action.payload];
-      console.log(newState)
-      return newState;
+      return {...state, all: [...state.all, action.payload]};
+    case SET_CURRENT_SECTION:
+      return {...state, current: action.payload };
     default:
       return state;
   }

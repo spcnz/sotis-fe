@@ -1,12 +1,10 @@
 import { call, put } from 'redux-saga/effects';
-import { createTestError, setCurrentTest, setTests } from '../actions/TestActions';
+import { createTestError, setCurrentTest, setResults, setTests } from '../actions/TestActions';
 import TestService from '../../services/TestService';
 
 export function* testCreate({ payload }) {
   try {
     const data = yield call(TestService.create, payload);
-    console.log(payload, " SALJEM ");
-    console.log(data, " DOIBO ODG")
     yield put(setCurrentTest(data.id));
   } catch (error) {
     yield put(createTestError(true));
@@ -31,4 +29,23 @@ export function* getTest({ payload }) {
     // yield put(createTestError(true));
   }
 }
+
+export function* submitTest({ payload }) {
+  try {
+    const data = yield call(TestService.submit, payload);
+  } catch (error) {
+    // yield put(createTestError(true));
+  }
+}
+
+export function* generateResults({ payload }) {
+  try {
+    const data = yield call(TestService.generateResults, payload);
+    yield put(setResults(data));
+  } catch (error) {
+    // yield put(createTestError(true));
+  }
+}
+
+
 

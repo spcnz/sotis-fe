@@ -18,7 +18,6 @@ const SectionInfo = props => {
     const sections = useSelector(state => 
         props.sectionInfo.partId in state.section.all ? 
             state.section.all[props.sectionInfo.partId]: []);
-    console.log(sections)
     const onChange = (field, value) => {
         props.setSectionInfo(prevState => {
             let newState = {...prevState};
