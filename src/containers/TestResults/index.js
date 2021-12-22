@@ -2,6 +2,7 @@ import { dispatch } from "d3-dispatch";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
+import D3Graph from "../Graph/D3Graph";
 import { generateResults } from "../../store/actions/TestActions";
 
 const TestResults = () => {
@@ -19,17 +20,26 @@ const TestResults = () => {
     },[dispatch])
 
     useEffect(() => {
-        console.log(results, 'promenjen')
-        let nodes = []
-        for(let i = 0; i < 37; i++)
-            nodes.push({ id: i })
 
-        console.log(nodes)
-        if (results)
+        console.log(results, 'promenjen')
+
+   
+        if (results) {
+            const nodes = results.keys.map(key => ({ id: key}))
+            const links = results.implications.map(implication => {
+                const key1Index = implication[0];
+                const key2Index = implication[1];
+    
+                return { 
+                    source: results.keys[key1Index],
+                    target: results.keys[key2Index]
+                }
+            })
             setData({
                 nodes,
-                links : results?.map(result => ({ source: result[0], target: result[1]}))
+                links
             })
+        }
     }, [results])
 
     const config = {
@@ -39,7 +49,7 @@ const TestResults = () => {
         "focusAnimationDuration": 0.75,
         "focusZoom": 1,
         "freezeAllDragEvents": false,
-        "height": 400,
+        "height": 700,
         "highlightDegree": 1,
         "highlightOpacity": 1,
         "linkHighlightBehavior": false,
@@ -48,7 +58,7 @@ const TestResults = () => {
         "nodeHighlightBehavior": false,
         "staticGraph": false,
         "panAndZoom": true,
-        "width": 400,
+        "width": 1000,
         "d3": {
           "alphaTarget": 0.05,
           "gravity": -100,
@@ -101,12 +111,7 @@ const TestResults = () => {
 
     return (
         <div>
-            {/* <D3Graph data={data} configProp={config}/> */}
-            {results?.map(result => (
-                <div>
-                    ({result[0]}, {result[1]})
-                </div>
-            ))}
+            <D3Graph data={data} configProp={config}/>
         </div>
     )
 }

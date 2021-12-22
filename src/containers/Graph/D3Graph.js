@@ -68,12 +68,12 @@ const config = {
     }
   }
 
-export const D3Graph = ({ data }) => {
+export const D3Graph = ({ data, configProp=config }) => {
     return (
             <Graph
                 id="graph-id"
                 data={data}
-                config={config}
+                config={configProp}
             />
     )
 
