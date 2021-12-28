@@ -68,12 +68,13 @@ const config = {
     }
   }
 
-export const D3Graph = ({ data, configProp=config }) => {
+export const D3Graph = ({ data, configProp=config,  onClickNode=null}) => {
     return (
             <Graph
                 id="graph-id"
                 data={data}
                 config={configProp}
+                onClickNode={onClickNode || (() => console.log('clicked'))}
             />
     )
 

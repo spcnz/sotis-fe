@@ -13,7 +13,20 @@ const TestResults = () => {
         links: []
     })
 
+    const probs = useState([])
+
     const results = useSelector(state => state.test.results)
+
+    const generateId = node => {
+        if (node.problem.length == 1)
+
+            return node.problem[0].id;
+        else {
+            let id = "";
+            node.problem.forEach(prob => id += `${prob.id},`)
+            return id.slice(0, -1)
+        }
+    }
 
     useEffect(() => {
         dispatch(generateResults(id))
@@ -21,26 +34,36 @@ const TestResults = () => {
 
     useEffect(() => {
 
-        console.log(results, 'promenjen')
-
-   
         if (results) {
-            const nodes = results.keys.map(key => ({ id: key}))
-            const links = results.implications.map(implication => {
-                const key1Index = implication[0];
-                const key2Index = implication[1];
-    
-                return { 
-                    source: results.keys[key1Index],
-                    target: results.keys[key2Index]
-                }
-            })
+            const nodes = results.map(result => ({ id: generateId(result)}))
+            console.log('Nodes:  ', nodes)
+
+            let links = []
+            results.forEach(result => {
+                if (result.target_problems.length > 0) {
+                    result.target_problems.forEach(node => {
+                        let target = node.problem.length == 1 ? node.problem[0].id : ""
+                        if (target === "")
+                            target = generateId(node);
+
+                        links.push({ 
+                            source: generateId(result),
+                            target
+                            }
+                        )
+                    })
+             }})
+             console.log('Links:  ', links)
             setData({
                 nodes,
                 links
             })
         }
     }, [results])
+
+    const onClickNode = nodeId => {
+        console.log('id je ', nodeId)
+    }
 
     const config = {
         "automaticRearrangeAfterDropNode": false,
@@ -111,7 +134,7 @@ const TestResults = () => {
 
     return (
         <div>
-            <D3Graph data={data} configProp={config}/>
+            <D3Graph data={data} configProp={config}  onClickNode={onClickNode}/>
         </div>
     )
 }
