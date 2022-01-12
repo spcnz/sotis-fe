@@ -32,6 +32,10 @@ const TestTable = () => {
         <div>
             <Button variant="info" style={{marginRight:12}} onClick={() => history.push(TEST.replace(':id', testId).replace(':courseId', id))}>VIEW</Button>
             <Button variant="warning" style={{marginRight:12}} onClick={() => history.push(RESULTS.replace(':id', testId).replace(':courseId', id))}>RESULTS</Button>
+           
+            <Button variant="success">
+                <a href={`http://localhost:5000/api/test/${testId}/export`}>Export</a>
+            </Button>
         </div>
     )
     
