@@ -26,6 +26,11 @@ export const EDIT_PART = 'EDIT_PART';
 export const GET_PARTS = 'GET_PARTS';
 export const SET_PARTS = 'SET_PARTS';
 export const SET_CURRENT_PART = 'SET_CURRENT_PART';
+export const ADD_PART_TO_TEST = 'ADD_PART_TO_TEST';
+export const GET_TEST_PARTS = 'GET_TEST_PARTS';
+export const SET_TEST_PARTS = 'SET_TEST_PARTS';
+export const PART_ADDED_TO_TEST = 'PART_ADDED_TO_TEST';
+
 
 
 //=== SECTION ===

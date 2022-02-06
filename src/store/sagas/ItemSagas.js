@@ -5,7 +5,7 @@ import { createdItem, setItems, setItem } from '../actions/ItemActions';
 export function* getItems({ payload }) {
   try {
     const data = yield call(ItemService.getAll, payload);
-    yield put(setItems({ all: data, sectionId: payload }));
+    yield put(setItems(data));
   } catch (error) {
     // yield put(createTestError(true));
   }

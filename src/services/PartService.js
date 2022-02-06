@@ -2,19 +2,34 @@ import ApiService from './ApiService';
 
 const ENDPOINTS = {
   CREATE: '/api/test/part',
-  ALL: 'api/part?test_id=:id'
+  ADD_TO_TEST: '/api/test/:id/part',
+  ALL: 'api/part',
+  TEST_PARTS: 'api/test/:id/parts'
 };
 
 class PartService extends ApiService {
 
-  getAll = async testId => {
-    const { data } = await this.apiClient.get(ENDPOINTS.ALL.replace(":id", testId));
+  getAll = async () => {
+    const { data } = await this.apiClient.get(ENDPOINTS.ALL);
+
+    return data;
+  };
+
+  getTestParts = async (id) => {
+    const { data } = await this.apiClient.get(ENDPOINTS.TEST_PARTS.replace(":id", id));
 
     return data;
   };
 
   create = async (testId, partData) => {
     const { data } = await this.apiClient.post(ENDPOINTS.CREATE, partData);
+
+    return data;
+  };
+
+  addPart = async (testId, partId) => {
+    console.log(partId, 'iz servisa')
+    const { data } = await this.apiClient.post(ENDPOINTS.ADD_TO_TEST.replace(":id", testId), { part: partId });
 
     return data;
   };

@@ -6,7 +6,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { useDispatch } from 'react-redux';
 import { getSections } from '../../../store/actions/SectionActions';
-import { getParts } from '../../../store/actions/PartActions';
+import { getParts, getTestParts } from '../../../store/actions/PartActions';
 import { createItem, getItems } from '../../../store/actions/ItemActions';
 import InputGroup from 'react-bootstrap/InputGroup';
 import { TableBody } from '../../../styles';
@@ -17,7 +17,7 @@ const ItemInfo =({ setItemInfo, itemInfo }) => {
     const dispatch = useDispatch();
     const sections = useSelector(state => state.section.all);
     const testId = useSelector(state => state.test.current);
-    const parts = useSelector(state => state.part.all);
+    const parts = useSelector(state => state.part.testParts);
     const items = useSelector(state => state.item.all);
     const [modal, setModal] = useState({show: false, itemId: null});
 
@@ -29,6 +29,7 @@ const ItemInfo =({ setItemInfo, itemInfo }) => {
         })
     }
 
+    console.log(items)
     useEffect(() => {
         if (itemInfo.partId)
             dispatch(getSections(itemInfo.partId))
@@ -41,7 +42,7 @@ const ItemInfo =({ setItemInfo, itemInfo }) => {
 
     useEffect(() => {
         if (testId) {
-            dispatch(getParts(testId));
+            dispatch(getTestParts(testId));
         }
     }, [testId, dispatch])
 

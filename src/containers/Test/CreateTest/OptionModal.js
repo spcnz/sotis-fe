@@ -100,7 +100,7 @@ const OptionModal = props => {
                                         <td>{option.id}</td>
                                         <td>{option.label}</td>
                                         <td style={{width: '80%'}}>{option.name}</td>
-                                        <td>{option.correct_answer? 'YES': 'NO'}</td>
+                                        <td>{option.is_correct? 'YES': 'NO'}</td>
                                     </tr>
                                 ))}
                             </TableBody>

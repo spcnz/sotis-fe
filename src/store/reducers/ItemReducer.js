@@ -1,7 +1,7 @@
 import { CREATED_ITEM, SET_ITEMS, SET_ITEM } from '../actions/ActionTypes';
 
 const initialState = {
-    all: {},
+    all: [],
     current: null
   };
 

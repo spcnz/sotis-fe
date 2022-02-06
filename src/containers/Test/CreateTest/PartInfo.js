@@ -1,4 +1,4 @@
-import { useEffect  } from 'react';
+import { useEffect, useState  } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { useSelector } from "react-redux";
@@ -6,7 +6,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Table from 'react-bootstrap/Table';
 import { useDispatch } from 'react-redux';
-import { getParts, createPart } from '../../../store/actions/PartActions';
+import { getParts, addPartToTest, getTestParts } from '../../../store/actions/PartActions';
 import { TableBody } from '../../../styles';
 
 const LINEAR = 'LINEAR';
@@ -17,23 +17,37 @@ const SIMULTANEOUS = 'SIMULTANEOUS';
 const PartInfo = props => {
     const dispatch = useDispatch();
     const testId = useSelector(state => state.test.current);
+    const [part, setPart] = useState(null);
+    const [navigationMode, setNavigationMode] = useState('');
+    const [submissionMode, setSubmissionMode] = useState('');
+ 
     const parts = useSelector(state => state.part.all);
+    const testParts = useSelector(state => state.part.testParts);
 
-    const onChange = (field, value) => {
-        props.setPartInfo(prevState => {
-            let newState = {...prevState};
-            newState[field] = value;
-            return newState;
-        })
-    }
 
     useEffect(() => {
-        dispatch(getParts(testId))
+        dispatch(getParts())
+        if (testId)
+            dispatch(getTestParts(testId))
     }, [testId, dispatch])
 
     const submit = e => {
         e.preventDefault();
-        dispatch(createPart({ partInfo: props.partInfo, testId }))
+        const partId = part.id;
+        dispatch(addPartToTest({ partId, testId }))
+    }
+
+    const onPartSelected = partId => {
+        const part = parts.find(el => el.id == partId);
+        console.log(part)
+        if (!part) {
+            setSubmissionMode('');
+            setNavigationMode('');
+            return;
+        }  
+        setPart(part);
+        setSubmissionMode(part.submission);
+        setNavigationMode(part.navigation);
     }
 
     return (
@@ -42,30 +56,34 @@ const PartInfo = props => {
                 <Col xs={12} md={12}>
                     <Form.Group className="mb-3">
                         <Form.Label>Part title</Form.Label>
-                        <Form.Control 
-                            onChange={e => onChange('title', e.target.value)} 
-                            type="text" 
-                            placeholder="" />
+                        <Form.Select aria-label="Navigation mode" onChange={e => onPartSelected(e.target.value)}>
+                            {parts.map(part => (
+                                <option key={part.id} value={part.id}>{part.title}</option>
+                            ))}
+                            <option selected key={0} value={''}></option>
+                        </Form.Select>
                     </Form.Group>
                 </Col>
             </Row>
             <Row className="mb-3">
                 <Col xs={6} md={4}>
                     <Form.Label>Navigation mode</Form.Label>
-                    <Form.Select aria-label="Navigation mode" onChange={e => onChange('navigation_mode',e.target.value)}>
-                        <option value={LINEAR}>Linear</option>
-                        <option value={NON_LINEAR}>Non linear</option>
-                    </Form.Select>
+                    <Form.Control 
+                            type="text" 
+                            placeholder={navigationMode} 
+                            disabled
+                    />
                 </Col>
                 <Col xs={6} md={4}>
                     <Form.Label>Submission mode</Form.Label>
-                    <Form.Select aria-label="Submission mode" onChange={e => onChange('submission_mode', e.target.value)}>
-                        <option value={SIMULTANEOUS}>Simultaneous</option>
-                        <option value={INDIVIDUAL}>Individual</option>
-                    </Form.Select>
+                    <Form.Control 
+                            type="text" 
+                            placeholder={submissionMode} 
+                            disabled
+                            />
                 </Col>
             </Row>
-            <Button type="submit">Create part</Button>
+            <Button type="submit">Add part</Button>
             <Row>
                 <Col xs={12} md={12} sm >
                 <Table style={{marginTop: '15px', overflow: 'auto'}} striped bordered hover responsive>
@@ -76,7 +94,7 @@ const PartInfo = props => {
                         </tr>
                     </thead>
                     <TableBody>
-                        {parts.map(part => (
+                        {testParts.map(part => (
                             <tr>
                                 <td>{part.id}</td>
                                 <td>{part.title}</td>

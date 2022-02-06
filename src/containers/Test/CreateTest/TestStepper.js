@@ -20,13 +20,13 @@ const TestStepper = () => {
         score: 0
     })
     const [disabledNextBtn, setDisabledNextBtn] = useState(true);
-    const steps = [{ title: 'Test info'}, { title: 'Add part'}, { title: 'Add section'}, { title: 'Add questions' }]
+    const steps = [{ title: 'Test info'}, { title: 'Add part'},  { title: 'Add questions' }]
     const onPrevious= () => {
         setCurrentStep(currentStep => currentStep > 0 ? currentStep - 1: 0)
     }
 
     const onNext= () => {
-        setCurrentStep(current => currentStep < 4 ? current + 1: 4)
+        setCurrentStep(current => currentStep < 3 ? current + 1: 3)
       }
     return (
         <TestContainer>
@@ -42,11 +42,10 @@ const TestStepper = () => {
             <div>
                 {currentStep === 0 && <TestInfo setTestInfo={setTestInfo} testInfo={testInfo} setDisabledNextBtn={setDisabledNextBtn}/>}
                 {currentStep === 1 && <PartInfo setPartInfo={setPartInfo} partInfo={partInfo} />}
-                {currentStep === 2 && <SectionInfo setSectionInfo={setSectionInfo} sectionInfo={sectionInfo} />}
-                {currentStep === 3 && <ItemInfo setItemInfo={setItemInfo} itemInfo={itemInfo} />}
-                {currentStep === 4 && (
-                     <Alert key={1} variant="success">
-                     This is a alert—check it out!
+                {currentStep === 2 && <ItemInfo setItemInfo={setItemInfo} itemInfo={itemInfo} />}
+                {currentStep === 3 && (
+                     <Alert key={1} variant="success" transition="none">
+                     Successfully created test!
                    </Alert>
                 )}
             </div>

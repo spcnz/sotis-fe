@@ -14,17 +14,17 @@ const optionReducer = (state = initialState, action) => {
       return {...state, result : results }
     case SET_OPTIONS:
       
-      options = action.payload.map(option => {
-        let checked = false;
-        state.result.forEach(item => {
-            const found = item.options.find(el => el.option_id == option.id);
-            if (found)
-              checked = found.checked;
-        })
-        return {...option, checked }
-      })
+      // options = action.payload.map(option => {
+      //   let checked = false;
+      //   state.result.forEach(item => {
+      //       const found = item.options.find(el => el.option_id == option.id);
+      //       if (found)
+      //         checked = found.checked;
+      //   })
+      //   return {...option, checked }
+      // })
 
-      return {...state, all: options }
+      return {...state, all: action.payload }
     case CREATED_OPTION:
       return {...state, all : [...state.all, action.payload]}
     case SELECTED_OPTION:
