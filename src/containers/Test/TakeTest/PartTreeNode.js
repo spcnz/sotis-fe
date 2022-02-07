@@ -5,11 +5,10 @@ const PartTreeNode = ({ testId, part, idx, sections}) => {
   
     return (
         <TreeItem 
-            key={testId+ "_" + part.id} 
-            nodeId={part.id + ""} 
-            label={`Part: ${++idx} ${part.title}`}
-          
-      > {sections && sections.map((section, sec_idx) => (
+            nodeId={`${part.id}_part`} 
+            label={`Part: ${++idx} ${part.title}`}  
+      > 
+      {sections && sections.map((section, sec_idx) => (
             <SectionTreeNode
                 partId={part.id}
                 section={section}

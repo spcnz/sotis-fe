@@ -2,7 +2,9 @@ import ApiService from './ApiService';
 
 const ENDPOINTS = {
   CREATE: '/api/item',
-  ALL: 'api/item?section_id=:id'
+  ALL: 'api/item?section_id=:id',
+  FIRST: 'api/test/:id/start',
+  SUBMIT: 'api/itemresult/answer'
 };
 
 class ItemService extends ApiService {
@@ -19,7 +21,17 @@ class ItemService extends ApiService {
     return data;
   };
 
-  
+  getFirstQuestion = async id => {
+    const { data } = await this.apiClient.get(ENDPOINTS.FIRST.replace(":id", id));
+
+    return data;
+  };
+
+  submitAnswer = async responses => {
+    const { data } = await this.apiClient.post(ENDPOINTS.SUBMIT, responses);
+
+    return data;
+  };
 
   create = async itemData => {
     const { data } = await this.apiClient.post(ENDPOINTS.CREATE, {

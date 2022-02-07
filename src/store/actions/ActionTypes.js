@@ -18,6 +18,12 @@ export const SUBMIT_TEST = 'SUBMIT_TEST';
 export const GENERATE_RESULTS = 'GENERATE_RESULTS';
 export const SET_RESULTS = 'SET_RESULTS';
 
+export const GET_FIRST_QUESTION = 'GET_FIRST_QUESTION';
+export const SET_QUESTION = 'SET_QUESTION';
+export const GET_NEXT_QUESTION = 'GET_NEXT_QUESTION';
+export const SUBMIT_ANSWER = 'SUBMIT_ANSWER';
+
+
 
 //=== PART ===
 export const CREATE_PART = 'CREATE_PART';

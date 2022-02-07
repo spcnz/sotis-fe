@@ -5,46 +5,34 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import Alert from 'react-bootstrap/Alert'
 import Container from 'react-bootstrap/Container';
 
 import { getOptions, selectedOption } from '../../../store/actions/OptionActions';
-import { submitAnswer } from "../../../store/actions/TestActions";
+import { setItem } from '../../../store/actions/ItemActions';
 
-const Question = () => {
+const QuestionPreview = () => {
     const dispatch = useDispatch();
-    const item = useSelector(state => state.item.question)
-    console.log('pitanje je : ', item)
+    const item = useSelector(state => state.item.current)
+    const items = useSelector(state => state.section.current?.items)
     const options = useSelector(state => state.option.all)
-    const [optionChecked, setOptionChecked] =  useState([]);
-    const [show, setShow] = useState(false)
 
     useEffect(() => {
         if (item)
             dispatch(getOptions(item.id))
     }, [item, dispatch])
-
-    useEffect(() => {
-        setOptionChecked(options.map(option => ({ option_id: option.id, checked: false })))
-    }, [options])
     
+    const onPrevious = () => {
+        const currentIndex = items.findIndex(el => el.id === item.id);
+        if (currentIndex !== 0)
+            dispatch(setItem(items[currentIndex - 1]))
+    }   
 
-    const submit = () => {
-        const result = { responses:  [{ item_id: item.id, options: optionChecked }] }
-        dispatch(submitAnswer(result));
-        setShow(true);
-    }
+    const onNext = () => {
+        const currentIndex = items.findIndex(el => el.id === item.id);
+        if (currentIndex !== (items.length - 1))
+            dispatch(setItem(items[currentIndex + 1]))
+    }   
 
-    const checked = optionId => {
-        setOptionChecked(prevState => {
-            const idx = prevState.findIndex(option => option.option_id == optionId);
-            if (idx == -1)
-                return prevState;
-            prevState[idx].checked = true;
-
-            return [...prevState];
-        })
-    }
 
     return (
         <>
@@ -73,23 +61,23 @@ const Question = () => {
                                      />
                             </Form.Group>
                         </Col>
-                        <Col xs={1}>
-                            <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                                <Form.Check 
-                                    defaultChecked={option.checked}
-                                    onChange={() => checked(option.id)}   
-                                    type="checkbox" 
-                                     />
-                            </Form.Group>
-                        </Col>
                     </Row> 
                 ))}
-                <Button onClick={submit} variant="danger" style={{margin:'10px'}} >Submit answer </Button>
-                {show &&
-                    <Alert variant="success" transition={false} dismissible={true} onClose={() => setShow(false)}>
-                            Successfully submitet answer
-                    </Alert>
-                }     
+                <Row className="mb-3">
+                    <Col xs={1}>
+                        <Button onClick={onPrevious}>
+                            Previous
+                        </Button>
+                    </Col>
+                    <Col xs={10}>
+                    </Col>
+                    <Col xs={1} onClick={onNext}>
+                        <Button>
+                            Next
+                        </Button>
+                    </Col>
+                </Row>
+             
             </Container>
             )
         }
@@ -97,4 +85,4 @@ const Question = () => {
     );
 }
 
-export default Question;
+export default QuestionPreview;

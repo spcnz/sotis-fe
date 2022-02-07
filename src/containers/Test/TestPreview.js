@@ -4,22 +4,21 @@ import { useParams } from "react-router-dom";
 
 import { Container, Row, Col } from "react-bootstrap";
 
-import Question from "./Question";
-import { getTest, getFirstQuestion } from '../../../store/actions/TestActions';
-import { generateResults } from "../../../store/actions/TestActions";
+import TestTree from "./TakeTest/TestTree";
+import { getTest } from "../../store/actions/TestActions";
+import QuestionPreview from "./TakeTest/QuestionPreview";
 
-
-const TestInfo = ({ test }) => {
+const TestHeader = ({ test }) => {
 
     return (
         <>
-            <h1>You are taking a test: {test.title}</h1>
+            <h1>Test title: {test.title}</h1>
             <h2>Time limit: {test.time_dependency ? ((test.time_limit_seconds / 60)+ 'min'): 'NO LIMIT'}</h2>
         </>
     )
 }
 
-const TakeTest = () => {
+const TestPreview = () => {
     const dispatch = useDispatch();
     const test = useSelector(state => state.test.current)
     const { id } = useParams();
@@ -27,20 +26,19 @@ const TakeTest = () => {
     useEffect(() => {
         console.log('id testa jee :', id)
         dispatch(getTest(id))
-        dispatch(getFirstQuestion(id));
     },[dispatch, id])
-
     
     return (
         <Container>
             <Row style={{margin: '10px', padding: '10px'}}>
                 <Col xs={3} style={{margin: '10px'}}>
+                {test && (<TestTree test={test} preview={true} />) }
                 </Col>
                 <Col style={{margin: '10px'}}>
                 {test && (
                     <Container>
-                        <TestInfo test={test}/>
-                        <Question />
+                        <TestHeader test={test}/>
+                        <QuestionPreview />
                     </Container> )}
                 </Col> 
                 </Row>
@@ -48,4 +46,4 @@ const TakeTest = () => {
     )
 }
 
-export default TakeTest;
+export default TestPreview;

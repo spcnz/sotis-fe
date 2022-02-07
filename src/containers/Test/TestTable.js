@@ -7,7 +7,7 @@ import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 
 import { getAllTest } from '../../store/actions/TestActions';
-import { CREATE_TEST, TEST, RESULTS } from '../../routes';
+import { CREATE_TEST, TEST, RESULTS, TEST_PREVIEW } from '../../routes';
 import { STUDENT, TEACHER } from "../../consts";
 
 const TestTable = () => {
@@ -30,7 +30,7 @@ const TestTable = () => {
 
     const renderTeacherButtons = testId => (
         <div>
-            <Button variant="info" style={{marginRight:12}} onClick={() => history.push(TEST.replace(':id', testId).replace(':courseId', id))}>VIEW</Button>
+            <Button variant="info" style={{marginRight:12}} onClick={() => history.push(TEST_PREVIEW.replace(':id', testId).replace(':courseId', id))}>VIEW</Button>
             <Button variant="warning" style={{marginRight:12}} onClick={() => history.push(RESULTS.replace(':id', testId).replace(':courseId', id))}>RESULTS</Button>
            
             <Button variant="success">

@@ -5,7 +5,7 @@ import TreeItem from '@mui/lab/TreeItem';
 
 import PartTreeNode from "./PartTreeNode";
 
-const TestTree = ({ test }) => {
+const TestTree = ({ test, preview }) => {
 
     return (
         <TreeView
@@ -15,7 +15,7 @@ const TestTree = ({ test }) => {
             sx={{ height: 240, flexGrow: 1, maxWidth: 400, overflowY: 'auto' }}
         >
             <TreeItem  
-                nodeId={test.id + ""} 
+                nodeId={`${test.id}_test`} 
                 label={`Test: ${test.title}`}
                 >
                 {test.parts.map((part, idx) => (

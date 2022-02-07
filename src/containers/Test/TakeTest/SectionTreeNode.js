@@ -10,8 +10,7 @@ const SectionTreeNode = ({ partId, section, idx, items }) => {
 
     return (
         <TreeItem 
-            key={partId + "_" + section.id} 
-            nodeId={section.id + ""} 
+            nodeId={`${section.id}_section`} 
             label={`Section: ${++idx} ${section.title}`}
             onClick={() => dispatch(setCurrentSection(section))}
         >

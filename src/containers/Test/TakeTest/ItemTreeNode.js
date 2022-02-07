@@ -11,8 +11,7 @@ const ItemTreeNode = ({ sectionId, item, idx, options }) => {
     }
     return (
         <TreeItem 
-            key={sectionId+ "_" + item.id} 
-            nodeId={item.id + ""} 
+            nodeId={`${item.id}_item`} 
             label={`Question: ${++idx} `}
             onClick={() => onItemClick(item)}
         > 

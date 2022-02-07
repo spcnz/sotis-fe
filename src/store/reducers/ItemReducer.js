@@ -1,8 +1,9 @@
-import { CREATED_ITEM, SET_ITEMS, SET_ITEM } from '../actions/ActionTypes';
+import { CREATED_ITEM, SET_ITEMS, SET_ITEM, SET_QUESTION } from '../actions/ActionTypes';
 
 const initialState = {
     all: [],
-    current: null
+    current: null,
+    question: null
   };
 
 const itemReducer = (state = initialState, action) => {
@@ -13,6 +14,8 @@ const itemReducer = (state = initialState, action) => {
       return {...state, all : [...state.all, action.payload]}
     case SET_ITEM:
       return {...state, current: action.payload }
+    case SET_QUESTION:
+      return {...state, question: action.payload }
     default:
       return state;
   }
