@@ -3,12 +3,18 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import D3Graph from "../Graph/D3Graph";
-import { generateResults } from "../../store/actions/TestActions";
+import { Container, Row, Col } from "react-bootstrap";
+
+import { compareResults } from "../../store/actions/TestActions";
 
 const TestResults = () => {
     const { id } = useParams()
     const dispatch = useDispatch();
-    const [data, setData] = useState({
+    const [ksExpected, setKsExpected] = useState({
+        nodes: [],
+        links: []
+    })
+    const [ksReal, setKsReal] = useState({
         nodes: [],
         links: []
     })
@@ -29,41 +35,67 @@ const TestResults = () => {
     }
 
     useEffect(() => {
-        dispatch(generateResults(id))
+        dispatch(compareResults(1))
     },[dispatch])
 
+
+    const transformNodeLinks = graph => {
+        console.log('Graf je :', graph)
+        const nodes = graph.map(graph => ({ id: generateId(graph)}))
+        let links = []
+        graph.forEach(graph => {
+            if (graph.target_problems.length > 0) {
+                graph.target_problems.forEach(node => {
+                    let target = node.problem.length == 1 ? node.problem[0].id : ""
+                    if (target === "")
+                        target = generateId(node);
+
+                    links.push({ 
+                        source: generateId(graph),
+                        target
+                        }
+                    )
+                })
+            }})
+        return { nodes, links };
+    }
+
+    const nodesDifferences = (nodes_expected, nodes_real) => {
+        const colored_expected = nodes_expected.map(node => {
+            if (!nodes_real.find(el => el.id == node.id)) {
+                console.log('tuu')
+                return {...node, color: "red"}
+            }
+            else return {...node, color: "#d3d3d3" }
+        })
+            
+        return colored_expected
+    }
+
+    const linksDifferences = (links_expected, links_real) => {
+        const colored_expected = links_expected.map(link => {
+            if (!links_real.find(el => el.source == link.source && el.target == link.target)) {
+                console.log('tuu')
+                return {...link, color: "red"}
+            }
+            else return {...link, color: "#d3d3d3" }
+        })
+            
+
+        return colored_expected
+    }
+
     useEffect(() => {
-
         if (results) {
-            const nodes = results.map(result => ({ id: generateId(result)}))
-            console.log('Nodes:  ', nodes)
+            let { nodes, links }  = transformNodeLinks(results["ks_expected"])
+            let real_ks  = transformNodeLinks(results["ks_real"])
+            const coloredNodes = nodesDifferences(nodes, real_ks.nodes)
+            const coloredLinks = linksDifferences(links, real_ks.links)
 
-            let links = []
-            results.forEach(result => {
-                if (result.target_problems.length > 0) {
-                    result.target_problems.forEach(node => {
-                        let target = node.problem.length == 1 ? node.problem[0].id : ""
-                        if (target === "")
-                            target = generateId(node);
-
-                        links.push({ 
-                            source: generateId(result),
-                            target
-                            }
-                        )
-                    })
-             }})
-             console.log('Links:  ', links)
-            setData({
-                nodes,
-                links
-            })
+            setKsExpected({ nodes: coloredNodes, links: coloredLinks })
+            setKsReal({ nodes: real_ks.nodes, links: real_ks.links})
         }
     }, [results])
-
-    const onClickNode = nodeId => {
-        console.log('id je ', nodeId)
-    }
 
     const config = {
         "automaticRearrangeAfterDropNode": false,
@@ -81,7 +113,7 @@ const TestResults = () => {
         "nodeHighlightBehavior": false,
         "staticGraph": false,
         "panAndZoom": true,
-        "width": 1000,
+        "width": 400,
         "d3": {
           "alphaTarget": 0.05,
           "gravity": -100,
@@ -106,8 +138,6 @@ const TestResults = () => {
           "size": 200,
           "strokeColor": "none",
           "strokeWidth": 1.5,
-          "svg": "",
-          "symbolType": "circle"
         },
         "link": {
           "color": "#d3d3d3",
@@ -133,9 +163,27 @@ const TestResults = () => {
     
 
     return (
-        <div>
-            <D3Graph data={data} configProp={config}  onClickNode={onClickNode}/>
-        </div>
+    <Container>
+        <Row style={{margin: '10px', padding: '10px'}}>
+            <h3>Levenshtein distance between graphs: {results?.distance}</h3>
+        </Row>
+         <Row style={{ padding: '10px'}}>
+            <h4>Expected knowledge space</h4>
+             <Col xs={6} style={{margin: '10px'}}>
+                <div>
+                    <D3Graph id="1" data={ksExpected} configProp={config} />
+                </div>
+             </Col>
+             <Col style={{margin: '10px'}}>
+             <h4>Real knowledge space</h4>
+                <div>
+                    <D3Graph id="2" data={ksReal} configProp={config} />
+                </div>
+            </Col>
+        </Row>
+     
+     </Container>
+        
     )
 }
 

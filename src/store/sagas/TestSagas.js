@@ -38,9 +38,9 @@ export function* submitTest({ payload }) {
   }
 }
 
-export function* generateResults({ payload }) {
+export function* compareResults({ payload }) {
   try {
-    const data = yield call(TestService.generateResults, payload);
+    const data = yield call(TestService.compareResults, payload);
     yield put(setResults(data));
   } catch (error) {
     // yield put(createTestError(true));

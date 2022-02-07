@@ -88,3 +88,6 @@ export const ADDD_NODE = 'ADD_NODE';
 
 export const ADD_LINK = 'ADD_LINK';
 export const ADDED_LINK = 'ADDED_LINK';
+
+
+export const COMPARE_RESULTS = 'COMPARE_RESULTS';

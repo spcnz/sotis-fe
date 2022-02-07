@@ -5,7 +5,7 @@ const ENDPOINTS = {
   ALL: 'api/test?subject_id=:id',
   GET_ONE:  'api/test/:id',
   SUBMIT:  'api/itemresult',
-  GENERATE: 'api/itemresult/generate'
+  COMPARE: 'api/itemresult/generate'
 };
 
 class TestService extends ApiService {
@@ -36,11 +36,30 @@ class TestService extends ApiService {
     return data;
   };
 
-  generateResults = async testId => {
-    console.log('odavde', testId);
-    const { data } = await this.apiClient.get(ENDPOINTS.GENERATE);
+  compareResults = async domainId => {
+    const { data } = await this.apiClient.get(ENDPOINTS.COMPARE);
+    const ks_expected = [
+      { id: 0, problem: [], target_problems: [{
+        domain_id: 1, id: 1, iita_generated:true, problem : [{id:2}, {id: 4}]
+      }]},
+      { id: 1, problem: [{id: 2}, {id: 4}], target_problems: [{
+        domain_id: 1, id: 2, iita_generated:true, problem : [{id: 3}, {id:5}]
+      }]},
+      { id: 6, problem: [{id: 2}, {id: 4}], target_problems: [{
+        domain_id: 1, id: 2, iita_generated:true, problem : [{id: 1}]
+      }]},
+      { id: 2, problem: [{id: 3}, {id: 5}], target_problems: [{
+        domain_id: 1, id: 4, iita_generated:true, problem : [{id:1},{id:2},  {id: 3},{id: 4}, {id: 5}]
+      }]},
+      { id: 3, problem: [{id: 1}], target_problems: [{
+        domain_id: 1, id: 4, iita_generated:true, problem : [{id:1},{id:2},  {id: 3},{id: 4}, {id: 5}]
+      }]},
+      { id: 4, problem: [{id:1},{id:2},  {id: 3},{id: 4}, {id: 5}], target_problems: []},
+    ]
 
-    return data;
+   
+    // return data;
+    return {"ks_expected": ks_expected, "ks_real": data, "distance": 0.015}
   };
 }
 

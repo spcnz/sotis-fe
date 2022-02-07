@@ -87,7 +87,7 @@ const Question = () => {
                 <Button onClick={submit} variant="danger" style={{margin:'10px'}} >Submit answer </Button>
                 {show &&
                     <Alert variant="success" transition={false} dismissible={true} onClose={() => setShow(false)}>
-                            Successfully submitet answer
+                            Successfully submitted answer
                     </Alert>
                 }     
             </Container>

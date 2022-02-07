@@ -1,4 +1,4 @@
-import { CREATE_TEST, CREATE_TEST_ERROR, GET_TESTS, SET_CURRENT_TEST, SET_TESTS, GET_TEST, SUBMIT_TEST, GENERATE_RESULTS, SET_RESULTS, GET_FIRST_QUESTION, SET_QUESTION, GET_NEXT_QUESTION, SUBMIT_ANSWER } from './ActionTypes';
+import { CREATE_TEST, CREATE_TEST_ERROR, GET_TESTS, SET_CURRENT_TEST, SET_TESTS, GET_TEST, SUBMIT_TEST, COMPARE_RESULTS, SET_RESULTS, GET_FIRST_QUESTION, SET_QUESTION, GET_NEXT_QUESTION, SUBMIT_ANSWER } from './ActionTypes';
 
 export const createTest = testData => {
   return {
@@ -49,9 +49,9 @@ export const submitTest = payload => {
   }
 }
 
-export const generateResults = payload => {
+export const compareResults = payload => {
   return {
-    type: GENERATE_RESULTS,
+    type: COMPARE_RESULTS,
     payload
   }
 }
