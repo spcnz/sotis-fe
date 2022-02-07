@@ -68,8 +68,16 @@ const TestResults = () => {
             }
             else return {...node, color: "#d3d3d3" }
         })
+
+        const colored_real = nodes_real.map(node => {
+            if (!nodes_expected.find(el => el.id == node.id)) {
+                console.log('tuu')
+                return {...node, color: "red"}
+            }
+            else return {...node, color: "#d3d3d3" }
+        })
             
-        return colored_expected
+        return { colored_expected, colored_real}
     }
 
     const linksDifferences = (links_expected, links_real) => {
@@ -80,9 +88,17 @@ const TestResults = () => {
             }
             else return {...link, color: "#d3d3d3" }
         })
+
+        const colored_real = links_real.map(link => {
+            if (!links_expected.find(el => el.source == link.source && el.target == link.target)) {
+                console.log('tuu')
+                return {...link, color: "red"}
+            }
+            else return {...link, color: "#d3d3d3" }
+        })
             
 
-        return colored_expected
+        return { colored_expected, colored_real }
     }
 
     useEffect(() => {
@@ -92,8 +108,8 @@ const TestResults = () => {
             const coloredNodes = nodesDifferences(nodes, real_ks.nodes)
             const coloredLinks = linksDifferences(links, real_ks.links)
 
-            setKsExpected({ nodes: coloredNodes, links: coloredLinks })
-            setKsReal({ nodes: real_ks.nodes, links: real_ks.links})
+            setKsExpected({ nodes: coloredNodes.colored_expected, links: coloredLinks.colored_expected })
+            setKsReal({ nodes: coloredNodes.colored_real, links: coloredLinks.colored_real })
         }
     }, [results])
 
