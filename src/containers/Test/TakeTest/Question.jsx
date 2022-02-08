@@ -18,10 +18,12 @@ const Question = () => {
     const options = useSelector(state => state.option.all)
     const [optionChecked, setOptionChecked] =  useState([]);
     const [show, setShow] = useState(false)
+    const [end, setEnd] = useState(!item)
 
     useEffect(() => {
-        if (item)
+        if (item) 
             dispatch(getOptions(item.id))
+        setEnd(!item)
     }, [item, dispatch])
 
     useEffect(() => {
@@ -89,10 +91,16 @@ const Question = () => {
                     <Alert variant="success" transition={false} dismissible={true} onClose={() => setShow(false)}>
                             Successfully submitted answer
                     </Alert>
-                }     
+                } 
+               
             </Container>
             )
         }
+         {end &&
+                    <Alert variant="success" transition={false} dismissible={true} onClose={() => setEnd(false)}>
+                            Successfully finished test
+                    </Alert>
+                } 
         </>
     );
 }
