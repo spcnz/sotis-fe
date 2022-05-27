@@ -1,6 +1,6 @@
 About
 ====
-Front end application of the project for the course Modern educational technologies and standards at FTN, Novi Sad. 
+Front end application of the project for the course Modern educational technologies and standards at FTN, Novi Sad, 2021. 
 
 Installation
 ====
